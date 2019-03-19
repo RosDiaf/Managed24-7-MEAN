@@ -2,6 +2,34 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
+## Installing
+**Step 1** : Installing Nodejs. You may already have it installed. Visit your console and type:
+
+```
+$ node -v
+```
+
+**Step 2** : Installing Angular
+```
+$ npm install @angular/cli -g
+```
+
+Once installed, go into the folder where you prefer to store your projects and run the following command:
+```
+$ ng new mean
+$ cd mean
+```
+
+Run a command with the Angular CLI that will create a build of our project. We need to do this because our Express server is going to look for a /dist folder to serve the files.
+```
+$ ng build
+```
+
+**Step 3** : Setting up Express.js
+```
+$ npm install express body-parser --save
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
