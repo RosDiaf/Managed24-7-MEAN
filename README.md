@@ -30,6 +30,14 @@ $ ng build
 $ npm install express body-parser --save
 ```
 
+**Step 4** : Setting up MongoDB
+
+You can either use a DaaS (Database as a Service) like mlab.com, or you can setup your own MongoDB locally & on the production server.
+
+```
+npm install mongodb --save
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
