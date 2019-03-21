@@ -4,7 +4,7 @@
 
 <form class="w3-container" [formGroup]="termForm" (ngSubmit)="onSubmit()">
   <label id="term-label">Term</label>
-  <input class="w3-input" type="text" id="term" formControlName="term" [attr.disabled]="isSubmitted">
+  <input class="w3-input w3-border" type="text" id="term" formControlName="term" [attr.disabled]="isSubmitted">
   <div *ngIf="(!termForm.controls['term'].valid && termForm.controls['term'].touched)">Enter valid term</div>
   <button class="w3-btn w3-blue" [attr.disabled]="isSubmitted" id="submit">Submit</button>
 </form>

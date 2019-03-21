@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,13 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
 export class AppComponent {
   termForm: FormGroup;
   isSubmitted: boolean;
+  users: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private dataService: DataService) {
     this.buildtermForm();
+    this.dataService.getUsers()
+    .subscribe(res => this.users = res);
   }
 
   ngOnInit() {

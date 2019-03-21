@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+// -- Services
+import { DataService } from './data.service';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -11,7 +15,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [ReactiveFormsModule, FormsModule]
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
+      providers:[DataService]
     }).compileComponents();
   }));
 
@@ -49,4 +54,9 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#submit').textContent).toContain('Submit');
   });
+
+  // it(`should create`, async(inject([HttpTestingController, ApiService],
+  //   (httpClient: HttpTestingController, apiService: ApiService) => {
+  //     expect(apiService).toBeTruthy();
+  // })));
 });
