@@ -3,6 +3,7 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
+const url = require('url');
 // Connect
 const connection = (closure) => {
     return MongoClient.connect('mongodb://localhost:27017/mean', { useNewUrlParser: true }, (err, db) => {
@@ -28,18 +29,19 @@ let response = {
 
 // Get users
 router.get('/users', (req, res) => {
-    connection((db) => {
-        db.collection('users')
-            .find()
-            .toArray()
-            .then((users) => {
-                response.data = users;
-                res.json(response);
-            })
-            .catch((err) => {
-                sendError(err, res);
-            });
-    });
+    console.log(req.url);
+    // connection((db) => {
+    //     db.collection('users')
+    //         .find()
+    //         .toArray()
+    //         .then((users) => {
+    //             response.data = users;
+    //             res.json(response);
+    //         })
+    //         .catch((err) => {
+    //             sendError(err, res);
+    //         });
+    // });
 });
 
 module.exports = router;
