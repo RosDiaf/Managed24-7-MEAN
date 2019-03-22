@@ -7,6 +7,10 @@
 .term-form input {
     width: 45%;
 }
+.select {
+    width: 25%;
+    margin-bottom: 10px;
+}
 .term-form .error {
     color: #ff0000;
 }

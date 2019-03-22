@@ -14,24 +14,31 @@
         <button class="w3-btn w3-blue" [attr.disabled]="isSubmitted" id="submit">Submit</button>
       </form>
     </div>
-    <div class="w3-cell">
-    </div>
+    <div class="w3-cell"></div>
   </div>
 </div>
 
 <div class="w3-container">
-  <table class="w3-table-all">
-    <thead>
-      <tr class="w3-blue">
-        <th>Name</th>
-        <th>Gender</th>
+  <div class="w3-cell-row">
+    <label>Filter by:</label>
+    <select class="w3-input w3-border select">
+      <option *ngFor="let user of users; let index" value={{user.gender}}>{{user.name}}</option>
+    </select>
+  </div>
+  <div class="w3-cell-row">
+    <table class="w3-table-all">
+      <thead>
+        <tr class="w3-blue">
+          <th>Name</th>
+          <th>Gender</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let user of users; let index">
+        <td>{{user.name}}</td>
+        <td>{{user.gender}}</td>
       </tr>
-    </thead>
-    <tr *ngFor="let user of users; let index">
-      <td>{{user.name}}</td>
-      <td>{{user.gender}}</td>
-    </tr>
-  </table>
+    </table>
+  </div>
 </div>
 
 <div class="w3-container" *ngIf="isServiceFail">

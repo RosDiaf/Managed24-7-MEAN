@@ -36,7 +36,7 @@ export class AppComponent {
   onSubmit() {
     if (this.termForm.valid) {
       this.isSubmitted = true;
-      this.getUsersByTerm(this.termForm.valid);
+      this.getUsersByTerm(this.termForm.controls.term.value);
     }
   }
 
