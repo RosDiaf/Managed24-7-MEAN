@@ -54,9 +54,4 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#submit').textContent).toContain('Submit');
   });
-
-  // it(`should create`, async(inject([HttpTestingController, ApiService],
-  //   (httpClient: HttpTestingController, apiService: ApiService) => {
-  //     expect(apiService).toBeTruthy();
-  // })));
 });

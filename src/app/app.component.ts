@@ -10,13 +10,21 @@ import { DataService } from './data.service';
 export class AppComponent {
   termForm: FormGroup;
   isSubmitted: boolean;
+  isServiceFail: boolean;
   users: any;
 
   constructor(private formBuilder: FormBuilder,
               private dataService: DataService) {
     this.buildtermForm();
     this.dataService.getUsers()
-    .subscribe(res => this.users = res);
+      .subscribe(res => {
+        this.users = res 
+      }, (error) => {
+        console.log(error)
+        this.isServiceFail = true;
+      });
+
+    console.log(this.users)
   }
 
   ngOnInit() {

@@ -29,19 +29,23 @@ let response = {
 
 // Get users
 router.get('/users', (req, res) => {
-    console.log(req.url);
-    // connection((db) => {
-    //     db.collection('users')
-    //         .find()
-    //         .toArray()
-    //         .then((users) => {
-    //             response.data = users;
-    //             res.json(response);
-    //         })
-    //         .catch((err) => {
-    //             sendError(err, res);
-    //         });
-    // });
+    connection((db) => {
+        db.collection('users')
+            .find()
+            .toArray()
+            .then((users) => {
+                response.data = users;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    res.send('Express RESTful API');
 });
 
 module.exports = router;

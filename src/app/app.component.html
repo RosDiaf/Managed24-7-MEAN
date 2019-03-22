@@ -1,10 +1,39 @@
 <div class="w3-container w3-blue">
-  <h2>Search Term Form</h2>
+  <div class="w3-cell-row">
+    <h2>Search Term Form</h2>
+  </div>
 </div>
 
-<form class="w3-container" [formGroup]="termForm" (ngSubmit)="onSubmit()">
-  <label id="term-label">Term</label>
-  <input class="w3-input w3-border" type="text" id="term" formControlName="term" [attr.disabled]="isSubmitted">
-  <div *ngIf="(!termForm.controls['term'].valid && termForm.controls['term'].touched)">Enter valid term</div>
-  <button class="w3-btn w3-blue" [attr.disabled]="isSubmitted" id="submit">Submit</button>
-</form>
+<div class="w3-container">
+  <div class="w3-cell-row">
+    <div class="w3-cell">
+      <form [formGroup]="termForm" (ngSubmit)="onSubmit()" class="term-form">
+        <label id="term-label">Term</label>
+        <input class="w3-input w3-border" type="text" id="term" formControlName="term" [attr.disabled]="isSubmitted">
+        <div *ngIf="(!termForm.controls['term'].valid && termForm.controls['term'].touched)" class="error">Enter valid term</div>
+        <button class="w3-btn w3-blue" [attr.disabled]="isSubmitted" id="submit">Submit</button>
+      </form>
+    </div>
+    <div class="w3-cell">
+    </div>
+  </div>
+</div>
+
+<div class="w3-container">
+  <table class="w3-table-all">
+    <thead>
+      <tr class="w3-blue">
+        <th>Name</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let user of users; let index">
+      <td>{{user.name}}</td>
+      <td>{{user.gender}}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="w3-container" *ngIf="isServiceFail">
+  <p>Service temporarily unavailable</p>
+</div>
