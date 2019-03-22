@@ -16,4 +16,9 @@ export class DataService {
         return this.http.get(`${this.API_URL}/api/users`).pipe(
             map((response) => response));
     }
+
+    public getUsersByTerm(term): Observable<any> {
+        return this.http.get(`${this.API_URL}/api/` + term).pipe(
+            map((response) => response));
+    }
 }

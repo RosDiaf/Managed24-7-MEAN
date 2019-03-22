@@ -43,9 +43,21 @@ router.get('/users', (req, res) => {
     });
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.send('Express RESTful API');
+router.get('/:term', (req, res) => {
+    console.log(req.params.term);
+    const term = req.params.term;
+    connection((db) => {
+        db.collection('users')
+            .find({name: `/^${term}/`})
+            .toArray()
+            .then((users) => {
+                response.data = users;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
 });
 
 module.exports = router;

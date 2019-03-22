@@ -20,11 +20,8 @@ export class AppComponent {
       .subscribe(res => {
         this.users = res 
       }, (error) => {
-        console.log(error)
         this.isServiceFail = true;
       });
-
-    console.log(this.users)
   }
 
   ngOnInit() {
@@ -39,7 +36,16 @@ export class AppComponent {
   onSubmit() {
     if (this.termForm.valid) {
       this.isSubmitted = true;
-      console.log(this.termForm.controls.term.value)
+      this.getUsersByTerm(this.termForm.valid);
     }
+  }
+
+  getUsersByTerm(term) {
+    this.dataService.getUsersByTerm(term)
+    .subscribe(res => {
+      this.users = res 
+    }, (error) => {
+      this.isServiceFail = true;
+    });
   }
 }
