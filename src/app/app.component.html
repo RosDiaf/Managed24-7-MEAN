@@ -21,9 +21,10 @@
 <div class="w3-container">
   <div class="w3-cell-row">
     <label>Filter by:</label>
-    <select class="w3-input w3-border select">
-      <option *ngFor="let user of users; let index" value={{user.gender}}>{{user.name}}</option>
+    <select class="w3-input w3-border select" (change)="filterUser(userSelect.value)" #userSelect>
+      <option *ngFor="let user of users; let i = index" value={{i}}>{{user.name}}</option>
     </select>
+    <button *ngIf="showAll" (click)="showAllUsers()" class="w3-btn w3-green" id="showAll">Show all</button>
   </div>
   <div class="w3-cell-row">
     <table class="w3-table-all">
@@ -33,7 +34,7 @@
           <th>Gender</th>
         </tr>
       </thead>
-      <tr *ngFor="let user of users; let index">
+      <tr *ngFor="let user of filterList; let index">
         <td>{{user.name}}</td>
         <td>{{user.gender}}</td>
       </tr>

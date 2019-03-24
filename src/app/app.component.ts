@@ -12,13 +12,16 @@ export class AppComponent {
   isSubmitted: boolean;
   isServiceFail: boolean;
   users: any;
+  filterList: any;
+  showAll: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private dataService: DataService) {
     this.buildtermForm();
     this.dataService.getUsers()
       .subscribe(res => {
-        this.users = res 
+        this.users = res;
+        this.filterList = res;
       }, (error) => {
         this.isServiceFail = true;
       });
@@ -43,9 +46,20 @@ export class AppComponent {
   getUsersByTerm(term) {
     this.dataService.getUsersByTerm(term)
     .subscribe(res => {
-      this.users = res 
+      this.users = res;
+      this.filterList = res;
     }, (error) => {
       this.isServiceFail = true;
     });
+  }
+
+  filterUser(index: any) {
+    this.filterList = [this.users[index]];
+    this.showAll = true;
+  }
+
+  showAllUsers() {
+    this.filterList = this.users;
+    this.showAll = !this.showAll;
   }
 }

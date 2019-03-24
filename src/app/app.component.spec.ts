@@ -98,4 +98,29 @@ describe('AppComponent', () => {
       expect(component.isServiceFail).toBe(true);
     }));
   });
+  
+  describe('Filter user', () => {
+    let response;
+    beforeEach(() => {
+      response =  [
+        { name: "Louis Farrell", gender: "M" },
+        { name: "Lida Harriston", gender: "F" },
+        { name: "Shirely Challis", gender: "F" },
+        { name: "Alisa Merryman", gender: "F" }
+      ];
+    });
+
+    it('should filter the list for given user name', () => {
+      component.users = response;
+      component.filterUser(1);
+      expect(component.filterList.length).toBeGreaterThan(0);
+      expect(component.showAll).toBe(true);
+    });
+
+    it('should show the complete list when \'show all\' button is clicked', () => {
+      component.users = response;
+      component.showAllUsers();
+      expect(component.filterList).toEqual(component.users);
+    });
+  });
 });
