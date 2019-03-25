@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-
 const url = require('url');
-// Connect
-const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/mean', { useNewUrlParser: true }, (err, db) => {
-        if (err) return console.log(err);
 
+const connection = (closure) => {
+    return MongoClient.connect('mongodb://localhost:27017/usersDB' , { useNewUrlParser: true }, (err, client) => {
+        if (err) return console.log(err)
+        const db =  client.db('UsersDB')
+        const collection = db.collection('users');
         closure(db);
     });
 };
@@ -35,7 +35,7 @@ router.get('/users', (req, res) => {
             .toArray()
             .then((users) => {
                 response.data = users;
-                res.json(response);
+                res.json(response.data);
             })
             .catch((err) => {
                 sendError(err, res);
@@ -52,7 +52,7 @@ router.get('/:term', (req, res) => {
             .toArray()
             .then((users) => {
                 response.data = users;
-                res.json(response);
+                res.json(response.data);
             })
             .catch((err) => {
                 sendError(err, res);

@@ -106,6 +106,119 @@ npm install mongodb --save
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Web server
+
+Run `node server` for a web server. Navigate to `http://localhost:3000/api/users`. Will provide the list of the users to be cosumed into UI.
+
+## Implementing Token-Based Authentication With jwt-simple
+
+```
+npm install jwt-simple
+npm install moment
+```
+### Creating the user store and the token store
+
+```
+USERS.JS
+TOKENS.JS
+```
+
+### Add dependencies and imports our user and token stores
+
+```
+const jwt = require('jwt-simple');
+const moment = require('moment');
+const users = require('./users');
+const tokens = require('./tokens');
+```
+
+### This object contains the claims that will be used for our token, as well as some other attributes like the app secret and header key.
+
+```
+const jwtAttributes = {
+    SECRET: 'this_will_be_used_for_hashing_signature',
+    ISSUER: 'Rosario Diaferia', 
+    HEADER: 'x-jc-token', 
+    EXPIRY: 120,
+};
+```
+
+### Implement middleware for token and validation
+
+```
+// AUTH MIDDLEWARE FOR /token ENDPOINT
+const auth = function (req, res) {
+    const { EXPIRY, ISSUER, SECRET } = jwtAttributes;
+  
+    if (req.body) {
+      const user = users.validateUser(req.body.name, req.body.password);
+      if (user) {
+        const expires = moment().add(EXPIRY, 'seconds')
+          .valueOf();
+        
+        const payload = {
+          exp: expires,
+          iss: ISSUER,
+          name: user.name,
+          email: user.email, 
+        };
+  
+        const token = jwt.encode(payload, SECRET);
+  
+        tokens.add(token, payload);
+  
+        res.json({ token });
+      } else {
+        res.sendStatus(401);
+      }
+    } else {
+      res.sendStatus(401);
+    }
+};
+
+// VALIDATE MIDDLEWARE FOR /secretInfo
+const validate = function (req, res, next) {
+    const { HEADER, SECRET } = jwtAttributes;
+  
+    const token = req.headers[HEADER];
+  
+    if (!token) {
+      res.statusMessage = 'Unauthorized: Token not found';
+      res.sendStatus('401').end();
+    } else {
+      try {
+        const decodedToken = jwt.decode(token, SECRET);
+      } catch(e) {
+        res.statusMessage = 'Unauthorized: Invalid token';
+        res.sendStatus('401');
+        return;
+      }
+      
+      if (!tokens.isValid(token)) {
+        res.statusMessage = 'Unauthorized : Token is either invalid or expired';
+        res.sendStatus('401');
+        return;
+      }
+      next(); 
+    }
+};
+```
+### Request token
+
+```
+app.post('/token', auth, (req, res) => {
+  res.send('token');
+});
+```
+
+### Validate if a user with the matching password is found 
+
+```
+app.get('/secretInfo', validate, (req, res) => {
+    res.send('Secret info');
+});
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

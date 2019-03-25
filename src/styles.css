@@ -7,6 +7,9 @@
 .term-form input {
     width: 45%;
 }
+.term-form .search-result-msg {
+    margin-left: 10px;
+}
 .select {
     width: 25%;
     margin-bottom: 10px;

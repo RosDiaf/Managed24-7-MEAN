@@ -11,6 +11,7 @@ export class AppComponent {
   termForm: FormGroup;
   isSubmitted: boolean;
   isServiceFail: boolean;
+  isSearchFail: boolean;
   users: any;
   filterList: any;
   showAll: boolean;
@@ -46,8 +47,13 @@ export class AppComponent {
   getUsersByTerm(term) {
     this.dataService.getUsersByTerm(term)
     .subscribe(res => {
-      this.users = res;
-      this.filterList = res;
+      if(res.lenght > 0) {
+        this.users = res;
+        this.filterList = res;
+        this.isSearchFail = false;
+      } else {
+        this.isSearchFail = true;
+      }
     }, (error) => {
       this.isServiceFail = true;
     });
