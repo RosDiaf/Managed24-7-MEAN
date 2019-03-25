@@ -133,6 +133,13 @@ describe('AppComponent', () => {
       expect(component.showAll).toBe(true);
     });
 
+    it('should filter the list for given gender', () => {
+      component.users = response;
+      component.filterUserByGender('M');
+      expect(component.filterList.length).toBeGreaterThan(0);
+      expect(component.showAll).toBe(true);
+    });
+
     it('should show the complete list when \'show all\' button is clicked', () => {
       component.users = response;
       component.showAllUsers();

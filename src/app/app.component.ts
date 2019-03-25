@@ -64,6 +64,13 @@ export class AppComponent {
     this.showAll = true;
   }
 
+  filterUserByGender(gender: string) {
+    this.filterList =  this.users.filter(item => {
+      return item.gender == gender;
+    });
+    this.showAll = true;
+  }
+
   showAllUsers() {
     this.filterList = this.users;
     this.showAll = !this.showAll;
