@@ -101,13 +101,13 @@ app.get('*', (req, res) => {
 
 
 /* To secure URL with auth, token and validation */
-app.post('/token', auth, (req, res) => {
-    res.send('token');
-});
+// app.post('/token', auth, (req, res) => {
+//     res.send('token');
+// });
 
-app.get('/secretInfo', validate, (req, res) => {
-    res.send('Secret info');
-});
+// app.get('/secretInfo', validate, (req, res) => {
+//     res.send('Secret info');
+// });
 // -- End
 
 

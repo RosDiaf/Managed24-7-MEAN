@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testi
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, Observer } from 'rxjs';
 
 // -- Services
 import { DataService } from './data.service';
@@ -68,13 +68,29 @@ describe('AppComponent', () => {
 
   describe('Subscribe to service', () => {
     let service: DataService;
-    it('should use DataService', fakeAsync(() => {
-      let response =  [
+    let response;
+    beforeEach(() => {
+      response =  [
         { name: "Louis Farrell", gender: "M" },
         { name: "Lida Harriston", gender: "F" },
         { name: "Shirely Challis", gender: "F" },
         { name: "Alisa Merryman", gender: "F" }
       ];
+    });
+
+    it('should call DataService when component initialized', fakeAsync(() => {
+      service = TestBed.get(DataService);
+      spyOn(service, 'getUsers').and.returnValue(
+        Observable.create((observer: Observer<{ name: string, gender: string }>) => {
+          observer.next(response);
+          return observer;
+        })
+      );
+      component.ngOnInit();
+      expect(component.users).toBeDefined();
+    }));
+
+    it('should call DataService when term is provided', fakeAsync(() => {
       service = TestBed.get(DataService);
       spyOn(service, 'getUsersByTerm').and.returnValue(
         Observable.create((observer: Observer<{ name: string, gender: string }>) => {

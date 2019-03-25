@@ -41,21 +41,26 @@ Create database
 
 ```
 > use UserDB
-> db.products.insertMany( [
+> db.users.insertMany( [
       { name: "Louis Farrell", gender: "M" },
       { name: "Lida Harriston", gender: "F" },
       { name: "Shirely Challis", gender: "F" },
       { name: "Alisa Merryman", gender: "F" },
-      { name: "Debbie Coombe", gender: "M" },
-      { name: "Emiko Frenette", gender: "M" },
-      { name: "Bobbi Zellers", gender: "M" },
-      { name: "Wilfredo Tant", gender: "M" },
-      { name: "Armanda London", gender: "F" },
-      { name: "Collen Mosley", gender: "M" },
-      { name: "Gloria Berk", gender: "F" },
-      { name: "Joelle Golla", gender: "F" },
-      { name: "Dulce Carbonneau", gender: "F" },
-      { name: "Versie Quarles", gender: "F" },
+      { name: "Coletta Frieden", gender: "F" },
+      { name: "Cassey Rhoades", gender: "M" },
+      { name: "Christen Clement", gender: "M" },
+      { name: "Otelia Stoudemire", gender: "M" },
+      { name: "Renaldo Bernal", gender: "F" },
+      { name: "Marissa Ladouceur", gender: "F" },
+      { name: "Louis Synder", gender: "M" },
+      { name: "Lida Mederos", gender: "F" },
+      { name: "Alisa Ison", gender: "F" },
+      { name: "Coletta Tibbs", gender: "F" },
+      { name: "Cassey Vicks", gender: "M" },
+      { name: "Christen Donati", gender: "M" },
+      { name: "Otelia Monterrosa", gender: "F" },
+      { name: "Renaldo Baugh", gender: "M" },
+      { name: "Marissa Horgan", gender: "F" },
       
       ........................................
    ]);

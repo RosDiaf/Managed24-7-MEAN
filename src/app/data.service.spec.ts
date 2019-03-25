@@ -19,4 +19,10 @@ describe('DataService', () => {
     (httpClient: HttpTestingController, dataService: DataService) => {
       expect(dataService).toBeTruthy();
   })));
+
+  it(`should service be available when term provided`, async(inject([HttpTestingController, DataService],
+    (httpClient: HttpTestingController, dataService: DataService) => {
+      dataService.getUsersByTerm('Louis');
+      expect(dataService).toBeTruthy();
+  })));
 });

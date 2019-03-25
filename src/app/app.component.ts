@@ -18,6 +18,9 @@ export class AppComponent {
 
   constructor(private formBuilder: FormBuilder,
               private dataService: DataService) {
+  }
+
+  ngOnInit() {
     this.buildtermForm();
     this.dataService.getUsers()
       .subscribe(res => {
@@ -26,9 +29,6 @@ export class AppComponent {
       }, (error) => {
         this.isServiceFail = true;
       });
-  }
-
-  ngOnInit() {
   }
 
   buildtermForm() {
@@ -47,7 +47,7 @@ export class AppComponent {
   getUsersByTerm(term) {
     this.dataService.getUsersByTerm(term)
     .subscribe(res => {
-      if(res.lenght > 0) {
+      if(res.length > 0) {
         this.users = res;
         this.filterList = res;
         this.isSearchFail = false;
