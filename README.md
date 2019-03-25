@@ -40,7 +40,7 @@ Download, install and start MongoDB
 Create database
 
 ```
-> use mean
+> use UserDB
 > db.products.insertMany( [
       { name: "Louis Farrell", gender: "M" },
       { name: "Lida Harriston", gender: "F" },
@@ -56,43 +56,8 @@ Create database
       { name: "Joelle Golla", gender: "F" },
       { name: "Dulce Carbonneau", gender: "F" },
       { name: "Versie Quarles", gender: "F" },
-      { name: "Tresa Petre", gender: "F" },
-      { name: "Rosalia Inniss", gender: "F" },
-      { name: "Dina Boster", gender: "F" },
-      { name: "Nicola Keefer", gender: "F" },
-      { name: "Tori Hadsell", gender: "M" },
-      { name: "Ernesto Piel", gender: "M" },
-      { name: "Shayne Uribe", gender: "M" },
-      { name: "Many Marie", gender: "M" },
-      { name: "Danica Goatley", gender: "F" },
-      { name: "Londa Couturier", gender: "F" },
-      { name: "Scarlet Kropp", gender: "F" },
-      { name: "Apryl Woodcock", gender: "F" },
-      { name: "Theo Pelaez", gender: "M" },
-      { name: "Deon Muldoon", gender: "M" },
-      { name: "Eilene Marden", gender: "F" },
-      { name: "Echo Orwig", gender: "M" },
-      { name: "Lavenia Toribio", gender: "F" },
-      { name: "Kenton Meaders", gender: "M" },
-      { name: "Verdell Prahl", gender: "M" },
-      { name: "Nelly Haslem ", gender: "M" },
-      { name: "Ninfa Kincheloe", gender: "M" },
-      { name: "Margurite An", gender: "F" },
-      { name: "Brain Guizar", gender: "M" },
-      { name: "Antonetta Ghent", gender: "F" },
-      { name: "Kerry Whitner", gender: "F" },
-      { name: "Perry Garden", gender: "M" },
-      { name: "Gaston Hausmann", gender: "M" },
-      { name: "Tera Sholes", gender: "F" },
-      { name: "Elijah Servantes", gender: "M" },
-      { name: "Danielle Fisch", gender: "M" },
-      { name: "Toby Ertle", gender: "M" },
-      { name: "Toby Ertle", gender: "M" },
-      { name: "Charla Yochum", gender: "F" },
-      { name: "Verlie Kime", gender: "M" },
-      { name: "Spring Richardson", gender: "M" },
-      { name: "Eli Neault", gender: "M" },
-      { name: "Eula Cantrelle", gender: "F" },
+      
+      ........................................
    ]);
 ```
 
