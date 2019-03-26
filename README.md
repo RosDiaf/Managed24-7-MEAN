@@ -212,3 +212,39 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## SCREENSHOT
 
 ![_screenshot](https://user-images.githubusercontent.com/17438913/54965678-84390300-4f69-11e9-8526-3ad85f05f975.png)
+
+## What else I would have done if I had more time
+
+1. Use HTTP Methods & API Routes
+Building a Node.js RESTful API for creating, updating, retrieving or deleting users. POST, PUT, GET, PATCH or DELETE.
+
+2. Use HTTP Status Codes Correctly
+If something goes wrong while serving a request, you must set the correct status code for that in the response:
+
+3. Black-Box Test your Node.js REST APIs
+A simple test case which checks if a user is returned using the test runner mocha can be implemented like this:
+
+```
+const request = require('supertest')
+
+describe('GET /user/:id', function() {
+  it('returns a user', function() {
+    // newer mocha versions accepts promises as well
+    return request(app)
+      .get('/user')
+      .set('Accept', 'application/json')
+      .expect(200, {
+        id: '1',
+        name: 'John Math'
+      }, done)
+  })
+})
+```
+4. Use Conditional Requests
+Conditional requests are HTTP requests which are executed differently depending on specific HTTP headers. These headers try to check whether a version of a resource stored on the server matches a given version of the same resource.
+
+5. Create a Proper API Documentation
+You write APIs so others can use them, benefit from them. Providing an API documentation for your Node.js REST APIs are crucial. Open-source projects can help you with creating documentation for your APIs:
+
+- API Blueprint
+- Swagger
