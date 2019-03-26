@@ -4,6 +4,78 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const url = require('url');
 
+const jwt = require('jwt-simple');
+const moment = require('moment');
+const users = require('../../users');
+const tokens = require('../../tokens');
+
+const jwtAttributes = {
+    SECRET: 'this_will_be_used_for_hashing_signature',
+    ISSUER: 'Rosario Diaferia', 
+    HEADER: 'x-jc-token', 
+    EXPIRY: 120,
+};
+
+/* To secure URL with auth, token and validation */
+// AUTH MIDDLEWARE FOR /token ENDPOINT
+const auth = function (req, res) {
+    const { EXPIRY, ISSUER, SECRET } = jwtAttributes;
+  
+    if (req.body) {
+      const user = users.validateUser(req.body.name, req.body.password);
+      if (user) {
+        const expires = moment().add(EXPIRY, 'seconds')
+          .valueOf();
+        
+        const payload = {
+          exp: expires,
+          iss: ISSUER,
+          name: user.name,
+          email: user.email, 
+        };
+  
+        const token = jwt.encode(payload, SECRET);
+        console.log(token)
+  
+        tokens.add(token, payload);
+  
+        res.json({ token });
+      } else {
+        res.sendStatus(401);
+      }
+    } else {
+      res.sendStatus(401);
+    }
+};
+
+// VALIDATE MIDDLEWARE FOR /secretInfo
+const validate = function (req, res, next) {
+    const { HEADER, SECRET } = jwtAttributes;
+  
+    const token = req.headers[HEADER];
+  
+    if (!token) {
+      res.statusMessage = 'Unauthorized: Token not found';
+      res.sendStatus('401').end();
+    } else {
+      try {
+        const decodedToken = jwt.decode(token, SECRET);
+      } catch(e) {
+        res.statusMessage = 'Unauthorized: Invalid token';
+        res.sendStatus('401');
+        return;
+      }
+      
+      if (!tokens.isValid(token)) {
+        res.statusMessage = 'Unauthorized : Token is either invalid or expired';
+        res.sendStatus('401');
+        return;
+      }
+      next(); 
+    }
+};
+// -- Secure URL End
+
 const connection = (closure) => {
     return MongoClient.connect('mongodb://localhost:27017/usersDB' , { useNewUrlParser: true }, (err, client) => {
         if (err) return console.log(err)
@@ -43,6 +115,7 @@ router.get('/users', (req, res) => {
     });
 });
 
+// Get users by term
 router.get('/:term', (req, res) => {
     console.log(req.params.term);
     const term = req.params.term;

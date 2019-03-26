@@ -23,4 +23,9 @@ button#submit {
 button#showAll {
     margin-bottom: 10px;
 }
+hr {
+    margin: 40px 0;
+    height: 1px;
+    background-color: #d7d7d7;
+}
 
