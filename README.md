@@ -211,4 +211,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## SCREENSHOT
 
-![_screenshot](https://user-images.githubusercontent.com/17438913/54921619-202d2500-4efe-11e9-948d-0aae22a65cfa.png)
+![_screenshot](https://user-images.githubusercontent.com/17438913/54965678-84390300-4f69-11e9-8526-3ad85f05f975.png)
