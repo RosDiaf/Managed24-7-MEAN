@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { DataService } from './data.service';
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    HeaderComponent
+    HeaderComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

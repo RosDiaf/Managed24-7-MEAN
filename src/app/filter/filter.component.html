@@ -1,0 +1,16 @@
+<div>
+  <label>Filter by name:</label>
+  <select class="w3-input w3-border select" (change)="filterUser(userSelect.value)" #userSelect>
+    <option *ngFor="let user of users; let i = index" value={{i}}>{{user.name}}</option>
+  </select>
+</div>
+<div>
+  <label>Filter by gender:</label>
+  <select class="w3-input w3-border select" (change)="filterUserByGender(genderSelect.value)" #genderSelect>
+    <option value="M">M</option>
+    <option value="F">F</option>
+  </select>
+</div>
+<div>
+    <button *ngIf="showAll" (click)="showAllUsers()" class="w3-btn w3-green" id="showAll">Show all</button>
+</div>

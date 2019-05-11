@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { FilterComponent } from './filter/filter.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
+        FilterComponent,
         HeaderComponent,
         SearchComponent
       ],
