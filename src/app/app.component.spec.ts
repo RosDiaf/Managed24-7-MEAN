@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
+        HeaderComponent,
         SearchComponent
       ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
@@ -32,12 +34,6 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it('should render title in a h2 tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Search Term Form');
   });
 
   describe('Subscribe to service', () => {

@@ -27,7 +27,6 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     if (this.termForm.valid) {
       this.isSubmitted = true;
-      //this.getUsersByTerm(this.termForm.controls.term.value);
       this.termValue.emit(this.termForm.controls.term.value);
     }
   }
