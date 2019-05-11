@@ -12,13 +12,15 @@ import { DataService } from './data.service';
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filter.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     HeaderComponent,
-    FilterComponent
+    FilterComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

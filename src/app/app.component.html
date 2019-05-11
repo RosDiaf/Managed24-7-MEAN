@@ -12,20 +12,7 @@
     </app-filter>
   </div>
   <div class="w3-cell-row">
-    <table class="w3-table-all">
-      <thead>
-        <tr class="w3-blue">
-          <th>ID</th>
-          <th>Name</th>
-          <th>Gender</th>
-        </tr>
-      </thead>
-      <tr *ngFor="let user of filterList; let i = index">
-        <td>{{i}}</td>
-        <td>{{user.name}}</td>
-        <td>{{user.gender}}</td>
-      </tr>
-    </table>
+    <app-table [filterList]="filterList"></app-table>
   </div>
 </div>
 

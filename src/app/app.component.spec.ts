@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { FilterComponent } from './filter/filter.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
+import { TableComponent } from './table/table.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, from, Observer } from 'rxjs';
@@ -20,7 +21,8 @@ describe('AppComponent', () => {
         AppComponent,
         FilterComponent,
         HeaderComponent,
-        SearchComponent
+        SearchComponent,
+        TableComponent
       ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       providers:[DataService]

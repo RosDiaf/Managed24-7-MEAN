@@ -22,6 +22,7 @@ export class AppComponent {
       .subscribe(res => {
         this.users = res;
         this.filterList = res;
+        console.log(this.filterList)
       }, (error) => {
         this.isServiceFail = true;
       });
