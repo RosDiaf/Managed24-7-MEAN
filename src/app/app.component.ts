@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { DataService } from './data.service';
 
 @Component({
@@ -8,7 +7,6 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  termForm: FormGroup;
   isSubmitted: boolean;
   isServiceFail: boolean;
   isSearchFail: boolean;
@@ -16,12 +14,10 @@ export class AppComponent {
   filterList: any;
   showAll: boolean;
 
-  constructor(private formBuilder: FormBuilder,
-              private dataService: DataService) {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
-    this.buildtermForm();
     this.dataService.getUsers()
       .subscribe(res => {
         this.users = res;
@@ -29,19 +25,6 @@ export class AppComponent {
       }, (error) => {
         this.isServiceFail = true;
       });
-  }
-
-  buildtermForm() {
-    this.termForm = this.formBuilder.group({
-      term: this.formBuilder.control(null, [Validators.required, Validators.pattern('^(?=[a-zA-Z])([A-Za-z]*)+$')]),
-    });
-  }
-
-  onSubmit() {
-    if (this.termForm.valid) {
-      this.isSubmitted = true;
-      this.getUsersByTerm(this.termForm.controls.term.value);
-    }
   }
 
   getUsersByTerm(term) {

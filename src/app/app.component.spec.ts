@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { SearchComponent } from './search/search.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, from, Observer } from 'rxjs';
@@ -14,7 +15,8 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        SearchComponent
       ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       providers:[DataService]
@@ -36,34 +38,6 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Search Term Form');
-  });
-
-  it('should render label name in a label tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#term-label').textContent).toContain('Term');
-  });
-
-  it('should render term input tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#term')).toBeTruthy();
-  });
-
-  it('should render button label name in a button tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#submit').textContent).toContain('Submit');
-  });
-
-  describe('Form term', () => {
-    it('should submit the form', () => {
-      component.termForm.controls['term'].setValue('Ali');
-      let spy = spyOn(component, 'getUsersByTerm');
-      component.onSubmit();
-      expect(component.isSubmitted).toBe(true);
-      expect(spy).toHaveBeenCalledWith('Ali');
-    });
   });
 
   describe('Subscribe to service', () => {

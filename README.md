@@ -37,6 +37,13 @@ Download, install and start MongoDB
 ```
 "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"
 ```
+Generate names
+
+```
+Use the following website to generate names:
+http://listofrandomnames.com/
+```
+
 Create database
 
 ```

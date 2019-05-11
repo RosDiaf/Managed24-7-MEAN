@@ -1,0 +1,17 @@
+<div class="w3-container">
+  <div class="w3-cell-row">
+    <div class="w3-cell">
+      <form [formGroup]="termForm" (ngSubmit)="onSubmit()" class="term-form">
+        <label id="term-label">Term</label>
+        <input class="w3-input w3-border" type="text" id="term" formControlName="term">
+        <p><small><i>- Search by any term which is not into DB will return no results</i></small></p>
+        <p><small><i>- Search by any term that matches name will return results (e.g Louis will return 2 users)</i></small></p>
+        <div *ngIf="(!termForm.controls['term'].valid && termForm.controls['term'].touched)" class="error">Enter valid term</div>
+        <button class="w3-btn w3-blue" id="submit">Submit</button>
+        <span *ngIf="isSearchFail" class="search-result-msg">Search did not return any results</span>
+      </form>
+    </div>
+    <div class="w3-cell"></div>
+  </div>
+</div>
+<hr />
