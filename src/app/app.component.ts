@@ -22,7 +22,6 @@ export class AppComponent {
       .subscribe(res => {
         this.users = res;
         this.filterList = res;
-        console.log(this.filterList)
       }, (error) => {
         this.isServiceFail = true;
       });
@@ -41,6 +40,13 @@ export class AppComponent {
     }, (error) => {
       this.isServiceFail = true;
     });
+  }
+
+  filterUserByTitle(title: any) {
+    this.filterList =  this.users.filter(item => {
+      return item.title === title;
+    });
+    this.showAll = true;
   }
 
   filterUser(index: any) {

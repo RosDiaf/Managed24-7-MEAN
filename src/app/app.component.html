@@ -6,6 +6,7 @@
     <app-filter 
       [users]="users"
       [showAll]="showAll"
+      (titleValue)="filterUserByTitle($event)"
       (userIndexValue)="filterUser($event)"
       (genderValue)="filterUserByGender($event)"
       (showAllEvent)="showAllUsers()">

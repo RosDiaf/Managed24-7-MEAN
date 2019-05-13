@@ -117,7 +117,6 @@ router.get('/users', (req, res) => {
 
 // Get users by term
 router.get('/:term', (req, res) => {
-    console.log(req.params.term);
     const term = req.params.term;
     connection((db) => {
         db.createIndex({ name: "text", description: "text" })
@@ -130,7 +129,6 @@ router.get('/:term', (req, res) => {
             })
             .catch((err) => {
                 sendError(err, res);
-                console.log(err);
             });
     });
 });

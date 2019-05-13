@@ -71,6 +71,9 @@ Create database
       
       ........................................
    ]);
+
+How to get started wit MongoDB
+https://medium.freecodecamp.org/learn-mongodb-a4ce205e7739
 ```
 
 You can either use a DaaS (Database as a Service) like mlab.com, or you can setup your own MongoDB locally & on the production server.

@@ -7,6 +7,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
+  @Output() titleValue = new EventEmitter();
   @Output() userIndexValue = new EventEmitter();
   @Output() genderValue = new EventEmitter();
   @Output() showAllEvent = new EventEmitter();
@@ -16,6 +17,10 @@ export class FilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  filterTitle(index: any) {
+    this.titleValue.emit(index);
   }
 
   filterUser(index: any) {
