@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const employee = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const url = require('url');
@@ -80,7 +81,6 @@ const connection = (closure) => {
     return MongoClient.connect('mongodb://localhost:27017/usersDB' , { useNewUrlParser: true }, (err, client) => {
         if (err) return console.log(err)
         const db =  client.db('UsersDB')
-        const collection = db.collection('users');
         closure(db);
     });
 };
@@ -133,4 +133,21 @@ router.get('/:term', (req, res) => {
     });
 });
 
+router.get('/users/employee', (req, res) => {
+    connection((db) => {
+        db.collection('employee')
+            .find()
+            .toArray()
+            .then((users) => {
+                response.data = users;
+                res.json(response.data);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+
 module.exports = router;
+// module.exports = employee;

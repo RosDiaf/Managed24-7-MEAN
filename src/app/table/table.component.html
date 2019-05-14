@@ -5,6 +5,8 @@
       <th>Title</th>
       <th>Name</th>
       <th>Gender</th>
+      <th>Role</th>
+      <th>Industry</th>
     </tr>
   </thead>
   <tr *ngFor="let user of filterList; let i = index">
@@ -12,5 +14,7 @@
     <td>{{user.title}}</td>
     <td>{{user.name}}</td>
     <td>{{user.gender}}</td>
+    <td>{{user.role}}</td>
+    <td>{{user.industry}}</td>
   </tr>
 </table>
