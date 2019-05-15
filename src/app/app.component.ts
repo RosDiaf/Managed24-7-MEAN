@@ -22,19 +22,18 @@ export class AppComponent {
     this.dataService.getUsers()
       .subscribe(res => {
         this.users = res;
-        console.log(this.users)
         this.filterList = res;
       }, (error) => {
         this.isServiceFail = true;
       });
 
-    this.dataService.getEmployee()
-      .subscribe(res => {
-        this.employee = res;
-        console.log(this.employee)
-      }, (error) => {
-        this.isServiceFail = true;
-      });
+    // this.dataService.getEmployee()
+    //   .subscribe(res => {
+    //     this.employee = res;
+    //     console.log(this.employee)
+    //   }, (error) => {
+    //     this.isServiceFail = true;
+    //   });
   }
 
   getUsersByTerm(term) {

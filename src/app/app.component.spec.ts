@@ -7,6 +7,7 @@ import { TableComponent } from './table/table.component';
 import { ReactiveFormsModule, FormsModule, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, from, Observer } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // -- Services
 import { DataService } from './data.service';
@@ -25,7 +26,8 @@ describe('AppComponent', () => {
         TableComponent
       ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
-      providers:[DataService]
+      providers:[DataService],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 
