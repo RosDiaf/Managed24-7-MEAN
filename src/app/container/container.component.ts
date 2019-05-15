@@ -12,7 +12,6 @@ export class ContainerComponent implements OnInit {
   isServiceFail: boolean;
   isSearchFail: boolean;
   users: any;
-  employee: any;
   filterList: any;
   showAll: boolean;
 

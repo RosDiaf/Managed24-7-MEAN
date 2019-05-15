@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamComponent } from './team.component';
+import { HttpClientModule } from '@angular/common/http';
+
+// -- Services
+import { DataService } from '../data.service';
 
 describe('TeamComponent', () => {
   let component: TeamComponent;
@@ -8,7 +12,9 @@ describe('TeamComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamComponent ]
+      declarations: [ TeamComponent ],
+      imports: [ HttpClientModule ],
+      providers:[DataService],
     })
     .compileComponents();
   }));

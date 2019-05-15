@@ -1,23 +1,2 @@
 <app-header></app-header>
-<!-- <div class="w3-container">
-  <h2>Search Term Form</h2>
-  <app-search (termValue)='getUsersByTerm($event)'></app-search>
-  <div class="w3-cell-row">
-    <app-filter 
-      [users]="users"
-      [showAll]="showAll"
-      (titleValue)="filterUserByTitle($event)"
-      (userIndexValue)="filterUser($event)"
-      (genderValue)="filterUserByGender($event)"
-      (showAllEvent)="showAllUsers()">
-    </app-filter>
-  </div>
-  <div class="w3-cell-row">
-    <app-table [filterList]="filterList"></app-table>
-  </div>
-</div>
-
-<div class="w3-container" *ngIf="isServiceFail">
-  <p>Service temporarily unavailable</p>
-</div> -->
 <router-outlet></router-outlet>
