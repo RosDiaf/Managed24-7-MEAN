@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filter.component';
 import { TableComponent } from './table/table.component';
 import { TeamComponent } from './team/team.component';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TeamComponent } from './team/team.component';
     HeaderComponent,
     FilterComponent,
     TableComponent,
-    TeamComponent
+    TeamComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
