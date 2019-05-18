@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { ITeamMember } from './team.module'; 
 
 @Component({
   selector: 'app-team',
@@ -10,6 +11,8 @@ export class TeamComponent implements OnInit {
 
   employee: any;
   isServiceFail: boolean;
+  teamMemberID: ITeamMember[] = [];
+  clicked = [];
 
   constructor(private dataService: DataService) { }
 
@@ -17,9 +20,13 @@ export class TeamComponent implements OnInit {
     this.dataService.getEmployee()
       .subscribe(res => {
         this.employee = res;
-        console.log(this.employee)
       }, (error) => {
         this.isServiceFail = true;
       });
+  }
+
+  connect(memberID: number, i: number) {
+    this.teamMemberID.push({id: memberID});
+    this.clicked.push(i);
   }
 }

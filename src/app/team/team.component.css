@@ -4,4 +4,16 @@
 }
 .member img {
     width: 60px;
+    height: 60px;
+}
+
+.member .card-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.w3-tag {
+    margin-right: 5px;
 }

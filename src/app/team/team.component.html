@@ -1,18 +1,30 @@
-<!-- <div class="w3-cell-row">
-<div class="w3-cell">     -->
 <div class="w3-container">
   <div class="w3-card-4 member" *ngFor="let member of employee; let i = index">
     <header class="w3-container w3-light-grey">
       <h3>{{member.name}}</h3>
     </header>
     <div class="w3-container">
-      <p>1 new friend request</p>
+      <h4>Company: {{member.company}}</h4>
       <hr>
-      <img src="https://www.w3schools.com/w3css/img_avatar3.png" alt="Avatar" class="w3-left w3-circle">
-      <p>President/CEO at Mighty Schools...</p>
+      <div class="card-content">
+        <img src="https://www.w3schools.com/w3css/img_avatar3.png" alt="Avatar" class="w3-left w3-circle">
+        <ul>
+          <li>Registered: {{member.registered}}</li>
+          <li>{{member.email}}</li>
+          <li>{{member.phone}}</li>
+          <li>{{member.address}}</li>
+        </ul>
+      </div>
+      <p>{{member.about}}</p>
+      <hr>
+      <h4>Team members: </h4>
+      <span class="w3-tag w3-blue" *ngFor="let teamMember of member.friends; let i = index">
+        {{ teamMember.name }}
+      </span>
     </div>
-    <button class="w3-button w3-block w3-dark-grey">+ Connect</button>
+    <button class="w3-button w3-block"
+            (click)="connect(member._id, i)"
+            [ngClass]="clicked[i] === i ? 'w3-green' : 'w3-dark-grey'">
+            {{ clicked[i] === i ? '+ Added' : '+ Connent' }}</button>
   </div>
 </div>
-<!-- </div>
-</div> -->
