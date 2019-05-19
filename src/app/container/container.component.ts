@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { ITeamMember } from '../team/team.module'; 
 
 @Component({
   selector: 'app-container',
@@ -21,7 +22,6 @@ export class ContainerComponent implements OnInit {
     this.dataService.getUsers()
     .subscribe(res => {
       this.users = res;
-      console.log(this.users)
       this.filterList = res;
     }, (error) => {
       this.isServiceFail = true;
