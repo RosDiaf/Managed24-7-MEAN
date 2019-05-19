@@ -18,6 +18,7 @@ import { FilterComponent } from './filter/filter.component';
 import { TableComponent } from './table/table.component';
 import { TeamComponent } from './team/team.component';
 import { ContainerComponent } from './container/container.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ContainerComponent } from './container/container.component';
     FilterComponent,
     TableComponent,
     TeamComponent,
-    ContainerComponent
+    ContainerComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
