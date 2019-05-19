@@ -25,7 +25,7 @@ export class TeamComponent implements OnInit {
       });
   }
 
-  connect(memberID: number, i: number) {
+  connect(memberID: string, i: number) {
     this.teamMemberID.push({id: memberID});
     this.clicked.push(i);
   }

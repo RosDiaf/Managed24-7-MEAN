@@ -74,6 +74,18 @@ describe('ContainerComponent', () => {
       expect(component.users).toBeDefined();
     }));
 
+    it('should display a system error when DataService fails', fakeAsync(() => {
+      service = TestBed.get(DataService);
+      spyOn(service, 'getUsers').and.returnValue(
+        Observable.create((observer: Observer<{ name: string, gender: string }>) => {
+          return observer.error('something went wrong');
+        })
+      );
+      component.ngOnInit();
+      expect(component.users).not.toBeDefined();
+      expect(component.isServiceFail).toBe(true);
+    }));
+
     it('should call DataService when term is provided', fakeAsync(() => {
       service = TestBed.get(DataService);
       spyOn(service, 'getUsersByTerm').and.returnValue(
@@ -103,11 +115,18 @@ describe('ContainerComponent', () => {
     let response;
     beforeEach(() => {
       response =  [
-        { name: "Louis Farrell", gender: "M" },
-        { name: "Lida Harriston", gender: "F" },
-        { name: "Shirely Challis", gender: "F" },
-        { name: "Alisa Merryman", gender: "F" }
+        { title: "Mr", name: "Louis Farrell", gender: "M" },
+        { title: "Ms", name: "Lida Harriston", gender: "F" },
+        { title: "Mrs", name: "Shirely Challis", gender: "F" },
+        { title: "Mrs", name: "Alisa Merryman", gender: "F" }
       ];
+    });
+
+    it('should filter the list for given user title', () => {
+      component.users = response;
+      component.filterUserByTitle('Mr');
+      expect(component.filterList.length).toBeGreaterThan(0);
+      expect(component.showAll).toBe(true);
     });
 
     it('should filter the list for given user name', () => {

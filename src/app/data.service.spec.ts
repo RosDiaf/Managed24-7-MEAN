@@ -1,7 +1,12 @@
-import { TestBed, async, inject } from '@angular/core/testing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, async, inject, getTestBed } from '@angular/core/testing';
+import { HttpClientModule, HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+// Mock Data
+import { ProjectManagers } from '../assets/mock/users';
+import { Team } from '../assets/mock/team';
+
+// Service
 import { DataService } from './data.service';
 
 describe('DataService', () => {
@@ -17,6 +22,7 @@ describe('DataService', () => {
   
   it(`should service be available`, async(inject([HttpTestingController, DataService],
     (httpClient: HttpTestingController, dataService: DataService) => {
+      dataService.getUsers();
       expect(dataService).toBeTruthy();
   })));
 
@@ -25,4 +31,51 @@ describe('DataService', () => {
       dataService.getUsersByTerm('Louis');
       expect(dataService).toBeTruthy();
   })));
+
+  describe('getProducts', () => {
+
+    let injector: TestBed;
+    let service: DataService;
+    let httpMock: HttpTestingController;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+          imports: [HttpClientTestingModule],
+          providers: [DataService]
+      });
+
+      const testBed = getTestBed();
+      service = testBed.get(DataService);
+      httpMock = testBed.get(HttpTestingController);
+    });
+
+    it('should return an Observable<Users[]>', () => {
+      service.getUsers().subscribe((data) => {
+          expect(data.length).toBeGreaterThan(0);
+          expect(data).toEqual(ProjectManagers);
+      });
+    });
+
+    it('should return an Observable<Team[]>', () => {
+      service.getEmployee().subscribe((data) => {
+        console.log(data);
+        expect(data.length).toBeGreaterThan(0);
+        expect(data).toEqual(Team);
+      });
+    });
+
+    xit(`should service be available`, inject([HttpTestingController, DataService],
+      (httpClient: HttpTestingController, dataService: DataService) => {
+        // -- Added
+        dataService.getEmployee().subscribe((event: HttpEvent<any>) => {
+          expect(event.body).toEqual(ProjectManagers);
+        });
+  
+        const mockReq = httpClient.expectOne(`http://localhost:3000/api/users`);
+        expect(mockReq.cancelled).toBeFalsy();
+        expect(mockReq.request.responseType).toEqual('json');
+        mockReq.flush(ProjectManagers);
+        httpClient.verify();
+    }));
+  });
 });
