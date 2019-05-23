@@ -1,0 +1,10 @@
+form {
+    max-width: 600px;
+}
+form select {
+    color: #999999;
+}
+form label {
+    display: block;
+    margin: 10px 0;
+}
