@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   userForm: FormGroup;
+  isSubmitted: boolean;
 
   constructor(private formBuilder: FormBuilder) {
     this.buildUserForm();
@@ -27,4 +28,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    if (this.userForm.valid) {
+      this.isSubmitted = true;
+      console.log(this.userForm.controls)
+    } else {
+      this.isSubmitted = false;
+    }
+  }
 }
