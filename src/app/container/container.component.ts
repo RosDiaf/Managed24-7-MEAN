@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { ITeamMember } from '../team/team.module'; 
+import { ITeamMember } from '../team/team.module';
 
 @Component({
   selector: 'app-container',
@@ -31,7 +31,7 @@ export class ContainerComponent implements OnInit {
   getUsersByTerm(term) {
     this.dataService.getUsersByTerm(term)
     .subscribe(res => {
-      if(res.length > 0) {
+      if (res.length > 0) {
         this.users = res;
         this.filterList = res;
         this.isSearchFail = false;

@@ -9,7 +9,7 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [ReactiveFormsModule, FormsModule,]
+      imports: [ ReactiveFormsModule, FormsModule ]
     })
     .compileComponents();
   }));
@@ -44,8 +44,9 @@ describe('SearchComponent', () => {
 
   describe('Form term', () => {
     it('should submit the form', () => {
-      component.termForm.controls['term'].setValue('Ali');
-      let spy = spyOn(component.termValue, 'emit');
+      const key = 'term';
+      component.termForm.controls[key].setValue('Ali');
+      const spy = spyOn(component.termValue, 'emit');
       component.onSubmit();
       expect(component.isSubmitted).toBe(true);
       expect(spy).toHaveBeenCalled();

@@ -1,3 +1,3 @@
 export interface ITeamMember {
-    id: string
+    id: string;
 }

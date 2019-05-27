@@ -8,4 +8,4 @@ export const ROUTES: Routes = [
   { path: 'home', component: ProfileComponent },
   { path: 'list', component: ContainerComponent },
   { path: 'team', component: TeamComponent }
-]
+];

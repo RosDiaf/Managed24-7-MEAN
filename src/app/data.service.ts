@@ -9,7 +9,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 })
 
 export class DataService {
-    API_URL: string  = 'http://localhost:3000';
+    API_URL = 'http://localhost:3000';
     constructor(public http: HttpClient) {}
 
     public getUsers(): Observable<any> {

@@ -16,7 +16,7 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
       ],
-      providers:[DataService],
+      providers: [DataService],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));

@@ -19,7 +19,7 @@ describe('DataService', () => {
     const service: DataService = TestBed.get(DataService);
     expect(service).toBeTruthy();
   });
-  
+
   it(`should service be available`, async(inject([HttpTestingController, DataService],
     (httpClient: HttpTestingController, dataService: DataService) => {
       dataService.getUsers();
@@ -34,7 +34,7 @@ describe('DataService', () => {
 
   xdescribe('getProducts', () => {
 
-    let injector: TestBed;
+    const injector: TestBed;
     let service: DataService;
     let httpMock: HttpTestingController;
 
@@ -69,7 +69,7 @@ describe('DataService', () => {
         dataService.getEmployee().subscribe((event: HttpEvent<any>) => {
           // expect(event.body).toEqual(ProjectManagers);
         });
-  
+
         const mockReq = httpClient.expectOne(`http://localhost:3000/api/users`);
         expect(mockReq.cancelled).toBeFalsy();
         expect(mockReq.request.responseType).toEqual('json');

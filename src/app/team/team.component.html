@@ -22,9 +22,7 @@
         {{ teamMember.name }}
       </span>
     </div>
-    <button class="w3-button w3-block"
-            (click)="connect(member._id, i)"
-            [ngClass]="clicked[i] === i ? 'w3-green' : 'w3-dark-grey'">
+    <button class="w3-button w3-block" (click)="connect(member._id, i)" [ngClass]="clicked[i] === i ? 'w3-green' : 'w3-dark-grey'">
             {{ clicked[i] === i ? '+ Added' : '+ Connent' }}</button>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { TeamComponent } from './team.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, from, Observer } from 'rxjs';
 
-import { Team } from '../../assets/mock/team'
+import { Team } from '../../assets/mock/team';
 
 // -- Services
 import { DataService } from '../data.service';
@@ -16,7 +16,7 @@ describe('TeamComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TeamComponent ],
       imports: [ HttpClientModule ],
-      providers:[DataService],
+      providers: [ DataService ],
     })
     .compileComponents();
   }));
@@ -70,5 +70,5 @@ describe('TeamComponent', () => {
       expect(component.teamMemberID.length).toBeDefined();
     });
   });
-  
+
 });

@@ -19,7 +19,7 @@ describe('ContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ContainerComponent,
         AppComponent,
         FilterComponent,
@@ -28,10 +28,10 @@ describe('ContainerComponent', () => {
         TableComponent
       ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
-      providers:[DataService],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      providers: [DataService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -54,11 +54,11 @@ describe('ContainerComponent', () => {
     let service: DataService;
     let response;
     beforeEach(() => {
-      response =  [
-        { name: "Louis Farrell", gender: "M" },
-        { name: "Lida Harriston", gender: "F" },
-        { name: "Shirely Challis", gender: "F" },
-        { name: "Alisa Merryman", gender: "F" }
+      response = [
+        { name: 'Louis Farrell', gender: 'M' },
+        { name: 'Lida Harriston', gender: 'F' },
+        { name: 'Shirely Challis', gender: 'F' },
+        { name: 'Alisa Merryman', gender: 'F' }
       ];
     });
 
@@ -110,15 +110,15 @@ describe('ContainerComponent', () => {
       expect(component.isServiceFail).toBe(true);
     }));
   });
-  
+
   describe('Filter user', () => {
     let response;
     beforeEach(() => {
-      response =  [
-        { title: "Mr", name: "Louis Farrell", gender: "M" },
-        { title: "Ms", name: "Lida Harriston", gender: "F" },
-        { title: "Mrs", name: "Shirely Challis", gender: "F" },
-        { title: "Mrs", name: "Alisa Merryman", gender: "F" }
+      response = [
+        { title: 'Mr', name: 'Louis Farrell', gender: 'M' },
+        { title: 'Ms', name: 'Lida Harriston', gender: 'F' },
+        { title: 'Mrs', name: 'Shirely Challis', gender: 'F' },
+        { title: 'Mrs', name: 'Alisa Merryman', gender: 'F' }
       ];
     });
 
