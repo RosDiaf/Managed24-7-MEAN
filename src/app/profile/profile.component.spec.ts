@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ProfileComponent } from './profile.component';
+
+// -- Services
+import { DataService } from '../data.service';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -10,7 +14,8 @@ describe('ProfileComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfileComponent ],
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
+      providers: [DataService]
     })
     .compileComponents();
   }));
@@ -25,35 +30,31 @@ describe('ProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should submit the form when data is validated', () => {
-    const title_key = 'title';
-    const name_key = 'name';
-    const gender_key = 'gender';
-    const role_key = 'role';
-    const industry_key = 'industry';
+  describe('ProfileComponent', () => {
+    const TitleKey = 'title';
+    const NameKey = 'name';
+    const GenderKey = 'gender';
+    const RoleKey = 'role';
+    const IndustryKey = 'industry';
 
-    component.userForm.controls[title_key].setValue('Mr');
-    component.userForm.controls[name_key].setValue('Rosario');
-    component.userForm.controls[gender_key].setValue('M');
-    component.userForm.controls[role_key].setValue('Project Manager');
-    component.userForm.controls[industry_key].setValue('Telecoms');
-    component.onSubmit()
-    expect(component.isSubmitted).toEqual(true);
-  });
+    it('should submit the form when data is validated', () => {
+      component.userForm.controls[TitleKey].setValue('Mr');
+      component.userForm.controls[NameKey].setValue('Rosario');
+      component.userForm.controls[GenderKey].setValue('M');
+      component.userForm.controls[RoleKey].setValue('Project Manager');
+      component.userForm.controls[IndustryKey].setValue('Telecoms');
+      component.onSubmit();
+      expect(component.isSubmitted).toEqual(true);
+    });
 
-  it('should not submit the form when data is validated', () => {
-    const title_key = 'title';
-    const name_key = 'name';
-    const gender_key = 'gender';
-    const role_key = 'role';
-    const industry_key = 'industry';
-
-    component.userForm.controls[title_key].setValue('');
-    component.userForm.controls[name_key].setValue('');
-    component.userForm.controls[gender_key].setValue('');
-    component.userForm.controls[role_key].setValue('');
-    component.userForm.controls[industry_key].setValue('');
-    component.onSubmit()
-    expect(component.isSubmitted).toEqual(false);
+    it('should not submit the form when data is validated', () => {
+      component.userForm.controls[TitleKey].setValue('');
+      component.userForm.controls[NameKey].setValue('');
+      component.userForm.controls[GenderKey].setValue('');
+      component.userForm.controls[RoleKey].setValue('');
+      component.userForm.controls[IndustryKey].setValue('');
+      component.onSubmit();
+      expect(component.isSubmitted).toEqual(false);
+    });
   });
 });

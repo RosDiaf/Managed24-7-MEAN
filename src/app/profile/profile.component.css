@@ -8,3 +8,6 @@ form label {
     display: block;
     margin: 10px 0;
 }
+form .w3-tag {
+    width: 100%;
+}

@@ -17,6 +17,20 @@ export class DataService {
             map((response) => response));
     }
 
+    public setUsers(user: object) {
+        this.http.post(`${this.API_URL}/api/users/set_user`, user).subscribe(
+            res => {
+                console.log(res);
+            },
+            (err: HttpErrorResponse) => {
+                console.log(err.error);
+                console.log(err.name);
+                console.log(err.message);
+                console.log(err.status);
+            }
+        );
+    }
+
     public getUsersByTerm(term): Observable<any> {
         return this.http.get(`${this.API_URL}/api/` + term).pipe(
             map((response) => response));

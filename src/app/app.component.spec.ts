@@ -3,9 +3,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-// -- Services
-import { DataService } from './data.service';
-
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -16,7 +13,6 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
       ],
-      providers: [DataService],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));

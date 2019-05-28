@@ -148,6 +148,20 @@ router.get('/users/employee', (req, res) => {
     });
 });
 
+router.post('/users/set_user', (req, res) => {
+    console.log(req.body)
+    connection((db) => {
+        db.collection('users')
+            .insertOne(req.body, (err, data) => {
+                // if(err) return console.log(err);
+                res.send(('saved to db: ' + data));
+            })
+            // .catch((err) => {
+            //     sendError(err, res);
+            // });
+    });
+});
+
 
 module.exports = router;
 // module.exports = employee;
