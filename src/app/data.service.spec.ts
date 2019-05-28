@@ -1,6 +1,7 @@
-import { TestBed, async, inject, getTestBed } from '@angular/core/testing';
+import { TestBed, async, inject, getTestBed, fakeAsync } from '@angular/core/testing';
 import { HttpClientModule, HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Observable, of, from, Observer } from 'rxjs';
 
 // Mock Data
 import { ProjectManagers } from '../assets/mock/users';
@@ -60,6 +61,20 @@ describe('DataService', () => {
       service.getEmployee().subscribe((data) => {
         expect(data.length).toBeGreaterThan(0);
         expect(data).toEqual(Team);
+      });
+    });
+
+    it('should return an Observable<Team[]>', () => {
+      service.setUsers().subscribe((data) => {
+        const user = {
+          title: 'Mr',
+          name: 'Rosario',
+          surname: 'Diaferia',
+          gender: 'M',
+          role: 'Project MGR',
+          industry: 'Banking'
+        };
+        expect(data).toEqual(user);
       });
     });
 

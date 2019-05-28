@@ -9,6 +9,7 @@
       <th>Role</th>
       <th>Industry</th>
       <th>Team</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tr *ngFor="let user of filterList; let i = index">
@@ -20,6 +21,8 @@
     <td>{{user.role}}</td>
     <td>{{user.industry}}</td>
     <td><a routerLink="/team"
-      routerLinkActive="active" routerLinkActiveOptions="{exact: true}">View</a></td>
+      routerLinkActive="active" routerLinkActiveOptions="{exact: true}" class="w3-button w3-green"><i class="fa fa-users"></i></a></td>
+    <td><a routerLink="/team"
+      routerLinkActive="active" routerLinkActiveOptions="{exact: true}" class="w3-button w3-red"><i class="fa fa-trash"></i></a></td>
   </tr>
 </table>

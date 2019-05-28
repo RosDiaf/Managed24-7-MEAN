@@ -33,6 +33,7 @@ describe('ProfileComponent', () => {
   describe('ProfileComponent', () => {
     const TitleKey = 'title';
     const NameKey = 'name';
+    const SurnameKey = 'surname';
     const GenderKey = 'gender';
     const RoleKey = 'role';
     const IndustryKey = 'industry';
@@ -40,6 +41,7 @@ describe('ProfileComponent', () => {
     it('should submit the form when data is validated', () => {
       component.userForm.controls[TitleKey].setValue('Mr');
       component.userForm.controls[NameKey].setValue('Rosario');
+      component.userForm.controls[SurnameKey].setValue('Diaferia');
       component.userForm.controls[GenderKey].setValue('M');
       component.userForm.controls[RoleKey].setValue('Project Manager');
       component.userForm.controls[IndustryKey].setValue('Telecoms');
@@ -50,6 +52,7 @@ describe('ProfileComponent', () => {
     it('should not submit the form when data is validated', () => {
       component.userForm.controls[TitleKey].setValue('');
       component.userForm.controls[NameKey].setValue('');
+      component.userForm.controls[SurnameKey].setValue('');
       component.userForm.controls[GenderKey].setValue('');
       component.userForm.controls[RoleKey].setValue('');
       component.userForm.controls[IndustryKey].setValue('');
