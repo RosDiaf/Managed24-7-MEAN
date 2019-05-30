@@ -17,10 +17,11 @@ export class DataService {
             map((response) => response));
     }
 
-    public setUsers(user: object) {
-        this.http.post(`${this.API_URL}/api/users/set_user`, user).subscribe(
-            res => {
-                console.log(res);
+    public setUsers(user: object): any {
+        this.http.post(`${this.API_URL}/api/users/set_user`, user)
+        .subscribe(
+            data => {
+                console.log('PUT Request is successful ', data);
             },
             (err: HttpErrorResponse) => {
                 console.log(err.error);

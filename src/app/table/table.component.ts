@@ -14,4 +14,8 @@ export class TableComponent implements OnInit {
   ngOnInit() {
   }
 
+  removeUser(userId: any) {
+    console.log(userId);
+  }
+
 }

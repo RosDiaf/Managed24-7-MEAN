@@ -34,8 +34,6 @@ describe('DataService', () => {
   })));
 
   xdescribe('getProducts', () => {
-
-    const injector: TestBed;
     let service: DataService;
     let httpMock: HttpTestingController;
 
@@ -65,17 +63,33 @@ describe('DataService', () => {
     });
 
     it('should return an Observable<Team[]>', () => {
-      service.setUsers().subscribe((data) => {
-        const user = {
-          title: 'Mr',
-          name: 'Rosario',
-          surname: 'Diaferia',
-          gender: 'M',
-          role: 'Project MGR',
-          industry: 'Banking'
-        };
+      const user = {
+        title: 'Mr',
+        name: 'Rosario',
+        surname: 'Diaferia',
+        gender: 'M',
+        role: 'Project MGR',
+        industry: 'Banking'
+      };
+      service.setUsers(user).subscribe((data) => {
         expect(data).toEqual(user);
       });
+    });
+
+    it('should return an Observable<Team[]>', () => {
+      const user = {
+        title: 'Mr',
+        name: 'Rosario',
+        surname: 'Diaferia',
+        gender: 'M',
+        role: 'Project MGR',
+        industry: 'Banking'
+      };
+      service.setUsers(user);
+      // expect(data).toEqual(user);
+      // service.setUsers(user).subscribe((data) => {
+      //   expect(data).toEqual(user);
+      // });
     });
 
     xit(`should service be available`, inject([HttpTestingController, DataService],
