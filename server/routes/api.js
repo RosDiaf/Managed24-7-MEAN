@@ -148,17 +148,27 @@ router.get('/users/employee', (req, res) => {
     });
 });
 
-router.post('/users/set_user', (req, res) => {
-    console.log(req.body)
+router.post('/users/add', (req, res) => {
     connection((db) => {
         db.collection('users')
             .insertOne(req.body, (err, data) => {
-                // if(err) return console.log(err);
                 res.send(('saved to db: ' + data));
             })
-            // .catch((err) => {
-            //     sendError(err, res);
-            // });
+    });
+});
+
+router.delete('/users/remove/:id', (req, res) => {
+    const userID = req.params.id;
+    connection((db) => {
+        db.collection('users')
+            .deleteOne({_id: ObjectID(userID)}, function(err, results) {
+                if (err){
+                  console.log("failed");
+                  throw err;
+                }
+                console.log("success");
+                res.send({message: "Product deleted successfully!"});
+            });
     });
 });
 

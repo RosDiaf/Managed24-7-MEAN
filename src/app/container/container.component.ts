@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { ITeamMember } from '../team/team.module';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.css']
+  styleUrls: ['./container.component.css'],
 })
 export class ContainerComponent implements OnInit {
 
   isSubmitted: boolean;
   isServiceFail: boolean;
   isSearchFail: boolean;
+  isReloading: boolean;
+  isSpinner: boolean;
+  isUserId: string;
   users: any;
   filterList: any;
   showAll: boolean;
@@ -19,6 +23,10 @@ export class ContainerComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers() {
     this.dataService.getUsers()
     .subscribe(res => {
       this.users = res;
@@ -27,7 +35,6 @@ export class ContainerComponent implements OnInit {
       this.isServiceFail = true;
     });
   }
-
   getUsersByTerm(term) {
     this.dataService.getUsersByTerm(term)
     .subscribe(res => {
@@ -65,5 +72,22 @@ export class ContainerComponent implements OnInit {
   showAllUsers() {
     this.filterList = this.users;
     this.showAll = !this.showAll;
+  }
+
+  deleteUser(userId) {
+    this.isSpinner = true;
+    this.isUserId = userId;
+    this.dataService.deleteUsers(userId)
+    .subscribe(
+      data => {
+          this.getUsers();
+      },
+      (err: HttpErrorResponse) => {
+          console.log(err.error);
+          console.log(err.name);
+          console.log(err.message);
+          console.log(err.status);
+      }
+    );
   }
 }

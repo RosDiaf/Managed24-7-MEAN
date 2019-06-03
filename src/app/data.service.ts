@@ -18,7 +18,7 @@ export class DataService {
     }
 
     public setUsers(user: object): any {
-        this.http.post(`${this.API_URL}/api/users/set_user`, user)
+        this.http.post(`${this.API_URL}/api/users/add`, user)
         .subscribe(
             data => {
                 console.log('PUT Request is successful ', data);
@@ -30,6 +30,10 @@ export class DataService {
                 console.log(err.status);
             }
         );
+    }
+
+    public deleteUsers(id: any): Observable<any> {
+        return this.http.delete(`${this.API_URL}/api/users/remove/` + id)
     }
 
     public getUsersByTerm(term): Observable<any> {

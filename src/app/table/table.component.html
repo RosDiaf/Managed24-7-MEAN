@@ -21,7 +21,13 @@
     <td>{{user.role}}</td>
     <td>{{user.industry}}</td>
     <td><a routerLink="/team"
-      routerLinkActive="active" routerLinkActiveOptions="{exact: true}" class="w3-button w3-green"><i class="fa fa-users"></i></a></td>
-    <td><span class="w3-button w3-red" (click)="removeUser(user._id)"><i class="fa fa-trash"></i></span></td>
+          routerLinkActive="active" 
+          routerLinkActiveOptions="{exact: true}"
+          class="w3-button w3-green"><i class="fa fa-users"></i></a></td>
+    <td><span
+          [ngClass]="(isSpinner && (isUserId === user._id)) ? 'w3-button w3-black' : 'w3-button w3-red'"
+          (click)="removeUser(user._id)">
+            <i [ngClass]="(isSpinner && (isUserId === user._id)) ? 'fa fa-refresh' : 'fa fa-trash'"></i>
+        </span></td>
   </tr>
 </table>

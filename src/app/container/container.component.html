@@ -12,7 +12,11 @@
     </app-filter>
   </div>
   <div class="w3-cell-row">
-    <app-table [filterList]="filterList"></app-table>
+    <app-table 
+    [isSpinner]="isSpinner"
+    [isUserId]="isUserId"
+    [filterList]="filterList" 
+    (removeUserFromList)="deleteUser($event)"></app-table>
   </div>
 </div>
 

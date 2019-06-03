@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -8,6 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableComponent implements OnInit {
 
   @Input() filterList: any;
+  @Input() isSpinner: boolean;
+  @Input() isUserId: string;
+  @Output() removeUserFromList = new EventEmitter();
 
   constructor() { }
 
@@ -15,7 +18,6 @@ export class TableComponent implements OnInit {
   }
 
   removeUser(userId: any) {
-    console.log(userId);
+    this.removeUserFromList.emit(userId);
   }
-
 }
