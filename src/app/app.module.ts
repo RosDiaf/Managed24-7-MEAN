@@ -19,6 +19,7 @@ import { TableComponent } from './table/table.component';
 import { TeamComponent } from './team/team.component';
 import { ContainerComponent } from './container/container.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProfileComponent } from './profile/profile.component';
     TableComponent,
     TeamComponent,
     ContainerComponent,
-    ProfileComponent
+    ProfileComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

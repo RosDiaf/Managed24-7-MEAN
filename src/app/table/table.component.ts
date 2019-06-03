@@ -7,6 +7,8 @@ import { NavigationStart, Router } from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
+  editUserId: any;
+  isDialogOpen: boolean;
   @Input() filterList: any;
   @Input() isSpinner: boolean;
   @Input() isUserId: string;
@@ -19,5 +21,10 @@ export class TableComponent implements OnInit {
 
   removeUser(userId: any) {
     this.removeUserFromList.emit(userId);
+  }
+
+  openDialog(userId: any) {
+    this.isDialogOpen = true;
+    this.editUserId = userId;
   }
 }

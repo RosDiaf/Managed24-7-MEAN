@@ -9,6 +9,7 @@
       <th>Role</th>
       <th>Industry</th>
       <th>Team</th>
+      <th>Edit</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -24,6 +25,8 @@
           routerLinkActive="active" 
           routerLinkActiveOptions="{exact: true}"
           class="w3-button w3-green"><i class="fa fa-users"></i></a></td>
+    <td><a (click)="openDialog(user._id)" onclick="document.getElementById('id01').style.display='block'"
+            class="w3-button w3-grey"><i class="fa fa-bars"></i></a></td>
     <td><span
           [ngClass]="(isSpinner && (isUserId === user._id)) ? 'w3-button w3-black' : 'w3-button w3-red'"
           (click)="removeUser(user._id)">
@@ -31,3 +34,6 @@
         </span></td>
   </tr>
 </table>
+
+<app-dialog [isDialogOpen]="isDialogOpen"
+            [editUserId]="editUserId"></app-dialog>
