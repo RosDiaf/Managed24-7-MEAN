@@ -65,24 +65,6 @@ describe('ProfileComponent', () => {
       spyOn(service, 'setUsers').and.returnValue({message: "Product saved successfully!"});
       fixture.detectChanges();
       expect(component.isSubmitted).toEqual(undefined);
-      // const user = {
-      //   title: 'Mr',
-      //   name: 'Rosario',
-      //   surname: 'Diaferia',
-      //   gender: 'M',
-      //   role: 'Project Manager',
-      //   industry: 'Banking'
-      // };
-      // let service: DataService;
-      // service = TestBed.get(DataService);
-      // spyOn(service, 'setUsers').and.returnValue(
-      //   Observable.create((observer: Observer<{user}>) => {
-      //     observer.next({user});
-      //     return observer;
-      //   })
-      // );
-      // component.onSubmit();
-      // expect(component.isSubmitted).toEqual(false);
     });
   });
 });

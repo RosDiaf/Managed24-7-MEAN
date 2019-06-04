@@ -22,4 +22,10 @@ describe('DialogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit an event to parent to close dialog', () => {
+    spyOn(component.dialogStatus, 'emit');
+    component.closeDialog();
+    expect(component.dialogStatus.emit).toHaveBeenCalled();
+  });
 });

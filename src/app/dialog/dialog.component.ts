@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
@@ -9,6 +9,7 @@ export class DialogComponent implements OnInit {
 
   @Input() isDialogOpen: boolean;
   @Input() editUserId: any;
+  @Output() dialogStatus = new EventEmitter();
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class DialogComponent implements OnInit {
   }
 
   closeDialog() {
-    this.isDialogOpen = !this.isDialogOpen;
+    this.dialogStatus.emit();
   }
 
 }
