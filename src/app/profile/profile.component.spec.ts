@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { ProfileComponent } from './profile.component';
+import { Observable, of, from, Observer } from 'rxjs';
 
 // -- Services
 import { DataService } from '../data.service';
@@ -58,6 +58,31 @@ describe('ProfileComponent', () => {
       component.userForm.controls[IndustryKey].setValue('');
       component.onSubmit();
       expect(component.isSubmitted).toEqual(false);
+    });
+
+    it('should call DataService when component initialized', () => {
+      let service = fixture.debugElement.injector.get(DataService);
+      spyOn(service, 'setUsers').and.returnValue({message: "Product saved successfully!"});
+      fixture.detectChanges();
+      expect(component.isSubmitted).toEqual(undefined);
+      // const user = {
+      //   title: 'Mr',
+      //   name: 'Rosario',
+      //   surname: 'Diaferia',
+      //   gender: 'M',
+      //   role: 'Project Manager',
+      //   industry: 'Banking'
+      // };
+      // let service: DataService;
+      // service = TestBed.get(DataService);
+      // spyOn(service, 'setUsers').and.returnValue(
+      //   Observable.create((observer: Observer<{user}>) => {
+      //     observer.next({user});
+      //     return observer;
+      //   })
+      // );
+      // component.onSubmit();
+      // expect(component.isSubmitted).toEqual(false);
     });
   });
 });

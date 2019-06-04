@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, from, Observer } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { ProjectManagers } from '../../assets/mock/users'
 // -- Services
 import { DataService } from '../data.service';
 
@@ -55,17 +56,23 @@ describe('ContainerComponent', () => {
     let response;
     beforeEach(() => {
       response = [
-        { name: 'Louis Farrell', gender: 'M' },
-        { name: 'Lida Harriston', gender: 'F' },
-        { name: 'Shirely Challis', gender: 'F' },
-        { name: 'Alisa Merryman', gender: 'F' }
+        { title: 'Mr', name: 'Louis', surnmae: 'Farrell', gender: 'M', role: 'Project Manager', industry: 'Banking' },
+        { title: 'Ms', name: 'Lida', surnmae: 'Harriston', gender: 'F', role: 'Project Manager', industry: 'Public Sector' },
+        { title: 'Ms', name: 'Shirely', surnmae: 'Challis', gender: 'F', role: 'Project Manager', industry: 'Aereospace' },
+        { title: 'Mrs', name: 'Alisa', surnmae: 'Merryman', gender: 'M', role: 'Project Manager', industry: 'Media' },
       ];
     });
 
     it('should call DataService when component initialized', fakeAsync(() => {
       service = TestBed.get(DataService);
       spyOn(service, 'getUsers').and.returnValue(
-        Observable.create((observer: Observer<{ name: string, gender: string }>) => {
+        Observable.create((observer: Observer<{
+          title: string,
+          name: string,
+          surname: string,
+          gender: string,
+          role: string,
+          industry: string }>) => {
           observer.next(response);
           return observer;
         })
@@ -77,7 +84,13 @@ describe('ContainerComponent', () => {
     it('should display a system error when DataService fails', fakeAsync(() => {
       service = TestBed.get(DataService);
       spyOn(service, 'getUsers').and.returnValue(
-        Observable.create((observer: Observer<{ name: string, gender: string }>) => {
+        Observable.create((observer: Observer<{
+          title: string,
+          name: string,
+          surname: string,
+          gender: string,
+          role: string,
+          industry: string }>) => {
           return observer.error('something went wrong');
         })
       );
@@ -89,7 +102,13 @@ describe('ContainerComponent', () => {
     it('should call DataService when term is provided', fakeAsync(() => {
       service = TestBed.get(DataService);
       spyOn(service, 'getUsersByTerm').and.returnValue(
-        Observable.create((observer: Observer<{ name: string, gender: string }>) => {
+        Observable.create((observer: Observer<{
+          title: string,
+          name: string,
+          surname: string,
+          gender: string,
+          role: string,
+          industry: string }>) => {
           observer.next(response);
           return observer;
         })
@@ -98,10 +117,16 @@ describe('ContainerComponent', () => {
       expect(component.users).toBeDefined();
     }));
 
-    it('should display a system error', fakeAsync(() => {
+    it('should display a system error when service to get user by term failed', fakeAsync(() => {
       service = TestBed.get(DataService);
       spyOn(service, 'getUsersByTerm').and.returnValue(
-        Observable.create((observer: Observer<{ name: string, gender: string }>) => {
+        Observable.create((observer: Observer<{
+          title: string,
+          name: string,
+          surname: string,
+          gender: string,
+          role: string,
+          industry: string }>) => {
           return observer.error('something went wrong');
         })
       );
@@ -109,6 +134,26 @@ describe('ContainerComponent', () => {
       expect(component.users).not.toBeDefined();
       expect(component.isServiceFail).toBe(true);
     }));
+
+    it('should call DataService when user is delete', () => {
+      service = TestBed.get(DataService);
+      spyOn(service, 'deleteUsers').and.returnValue(
+        Observable.create((observer: Observer<{ message: string }>) => {
+          observer.next(response);
+          return observer;
+        })
+      );
+      component.deleteUser('5c980e5b7e5d3a3434edbe1f');
+      expect(component.isSpinner).toEqual(true);
+      expect(component.isUserId).toEqual('5c980e5b7e5d3a3434edbe1f');
+    });
+
+    it('should return error message when service failed to delete user', () => {
+      service = fixture.debugElement.injector.get(DataService);
+      spyOn(service, 'deleteUsers').and.returnValue(undefined);
+      fixture.detectChanges();
+      expect(component.isUserId).not.toBeDefined();
+    });
   });
 
   describe('Filter user', () => {

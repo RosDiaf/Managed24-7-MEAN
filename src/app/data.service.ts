@@ -18,11 +18,11 @@ export class DataService {
     }
 
     public setUsers(user: object): any {
-        return this.http.post(`${this.API_URL}/api/users/add`, user)
+        return this.http.post(`${this.API_URL}/api/users/add`, user);
     }
 
     public deleteUsers(id: any): Observable<any> {
-        return this.http.delete(`${this.API_URL}/api/users/remove/` + id)
+        return this.http.delete(`${this.API_URL}/api/users/remove/` + id);
     }
 
     public getUsersByTerm(term): Observable<any> {
