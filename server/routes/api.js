@@ -115,6 +115,21 @@ router.get('/users', (req, res) => {
     });
 });
 
+router.get('/users/:id', (req, res) => {
+    const userID = req.params.id;
+    connection((db) => {
+        db.collection('users')
+            .findOne({_id: ObjectID(userID)}, function(err, results) {
+                if (err){
+                  console.log("failed");
+                  throw err;
+                }
+                console.log("success");
+                res.json(results)
+            });
+    });
+});
+
 // Get users by term
 router.get('/:term', (req, res) => {
     const term = req.params.term;

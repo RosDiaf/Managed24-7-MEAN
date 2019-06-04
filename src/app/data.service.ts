@@ -17,6 +17,11 @@ export class DataService {
             map((response) => response));
     }
 
+    public getUsersById(userId): Observable<any> {
+        return this.http.get(`${this.API_URL}/api/users/` + userId).pipe(
+            map((response) => response));
+    }
+
     public setUsers(user: object): any {
         return this.http.post(`${this.API_URL}/api/users/add`, user);
     }

@@ -24,13 +24,8 @@ export class TableComponent implements OnInit {
   }
 
   openDialog(userId: any) {
-    // this.isDialogOpen = true;
-    this.toogleDialog();
     this.editUserId = userId;
-  }
-
-  closeDialog(dialogStatus) {
-    // this.isDialogOpen = false;
+    this.toogleDialog();
   }
 
   toogleDialog() {

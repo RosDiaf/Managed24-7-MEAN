@@ -35,6 +35,9 @@
   </tr>
 </table>
 
-<app-dialog [isDialogOpen]="isDialogOpen"
-            (dialogStatus)="toogleDialog()"
-            [editUserId]="editUserId"></app-dialog>
+<div *ngIf="editUserId">
+  <app-dialog [isDialogOpen]="isDialogOpen"
+  (dialogStatus)="toogleDialog()"
+  [editUserId]="editUserId">
+  </app-dialog>
+</div>
