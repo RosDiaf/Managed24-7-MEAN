@@ -18,18 +18,7 @@ export class DataService {
     }
 
     public setUsers(user: object): any {
-        this.http.post(`${this.API_URL}/api/users/add`, user)
-        .subscribe(
-            data => {
-                console.log('PUT Request is successful ', data);
-            },
-            (err: HttpErrorResponse) => {
-                console.log(err.error);
-                console.log(err.name);
-                console.log(err.message);
-                console.log(err.status);
-            }
-        );
+        return this.http.post(`${this.API_URL}/api/users/add`, user)
     }
 
     public deleteUsers(id: any): Observable<any> {

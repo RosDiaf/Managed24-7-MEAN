@@ -152,7 +152,11 @@ router.post('/users/add', (req, res) => {
     connection((db) => {
         db.collection('users')
             .insertOne(req.body, (err, data) => {
-                res.send(('saved to db: ' + data));
+                if(err) {
+                    console.log("failed");
+                    throw err;
+                }
+                res.send({message: "Product saved successfully!"} + data);
             })
     });
 });

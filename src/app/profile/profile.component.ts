@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -40,7 +41,18 @@ export class ProfileComponent implements OnInit {
         industry: this.userForm.controls.industry.value
       };
       this.isSubmitted = true;
-      this.dataService.setUsers(user);
+      this.dataService.setUsers(user)
+      .subscribe(
+        data => {
+           console.log(data);
+        },
+        (err: HttpErrorResponse) => {
+            console.log(err.error);
+            console.log(err.name);
+            console.log(err.message);
+            console.log(err.status);
+        }
+      );
     } else {
       this.isSubmitted = false;
     }
