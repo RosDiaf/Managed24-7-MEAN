@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ProfileComponent } from '../profile/profile.component';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
@@ -9,8 +11,8 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogComponent, TableComponent ],
-      imports: [ HttpClientModule ]
+      declarations: [ DialogComponent, ProfileComponent, TableComponent ],
+      imports: [ ReactiveFormsModule, FormsModule, HttpClientModule ]
     })
     .compileComponents();
   }));
