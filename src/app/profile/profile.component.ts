@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -7,16 +7,24 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnChanges {
 
   userForm: FormGroup;
   isSubmitted: boolean;
+  @Input() userProfile: any;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService) {
     this.buildUserForm();
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['userProfile']) {
+      console.log("EDIT: ", this.userProfile)
+    }
   }
 
   buildUserForm() {

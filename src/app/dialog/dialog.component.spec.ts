@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { DialogComponent } from './dialog.component';
+import { DataService } from '../data.service';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -8,7 +9,9 @@ describe('DialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogComponent ]
+      declarations: [ DialogComponent ],
+      imports: [ HttpClientModule ],
+      providers: [ DataService ]
     })
     .compileComponents();
   }));

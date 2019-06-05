@@ -1,34 +1,16 @@
 <div id="id01" class="w3-modal w3-animate-opacity" [ngStyle]="{'display': isDialogOpen ? 'block' : 'none'}">
   <div class="w3-modal-content w3-card-4">
-    <header class="w3-container w3-blue"> 
+    <header class="w3-container w3-black"> 
       <span (click)="closeDialog()" 
       class="w3-button w3-large w3-display-topright">&times;</span>
       <h2>Edit User</h2>
     </header>
     <div class="w3-container">
-      <label>Title</label>
-      <select class="w3-select w3-border">
-        <option value="Mr" [selected]="userProfile?.title == 'Mr' ? true : null">Mr</option>
-        <option value="Ms" [selected]="userProfile?.title == 'Ms' ? true : null">Ms</option>
-        <option value="Mrs" [selected]="userProfile?.title == 'Mrs' ? true : null">Mrs</option>
-      </select>
-
-      <label>Name</label>
-      <input type="text" class="w3-input w3-border" [value]="userProfile?.name" />
-
-      <label>Surname</label>
-      <input type="text" class="w3-input w3-border" [value]="userProfile?.surname" />
-
-      <label>Gender</label>
-      <input type="text" class="w3-input w3-border" [value]="userProfile?.gender" />
-
-      <label>Role</label>
-      <input type="text" class="w3-input w3-border" [value]="userProfile?.role" />
-
-      <label>Industry</label>
-      <input type="text" class="w3-input w3-border" [value]="userProfile?.industry" />
+      <div *ngIf="userProfile">
+        <app-profile [userProfile]="userProfile"></app-profile>
+      </div>
     </div>
-    <footer class="w3-container w3-blue">
+    <footer class="w3-container w3-black">
       <p>&copy;RD {{editUserId}}</p>
     </footer>
   </div>

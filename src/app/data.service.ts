@@ -36,7 +36,7 @@ export class DataService {
     }
 
     public getEmployee(): Observable<any> {
-        return this.http.get(`${this.API_URL}/api/users/employee`).pipe(
+        return this.http.get(`${this.API_URL}/api/users/team/employee`).pipe(
             map((response) => response));
     }
 }

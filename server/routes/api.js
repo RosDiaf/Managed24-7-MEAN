@@ -148,7 +148,7 @@ router.get('/:term', (req, res) => {
     });
 });
 
-router.get('/users/employee', (req, res) => {
+router.get('/users/team/employee', (req, res) => {
     connection((db) => {
         db.collection('employee')
             .find()
