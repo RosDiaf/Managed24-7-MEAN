@@ -19,9 +19,9 @@
       </div>
       <label>Title</label>
       <select class="w3-select w3-border" formControlName="title">
-        <option value="Mr" [selected]="userProfile?.title == 'Mr' ? true : null">Mr</option>
-        <option value="Ms" [selected]="userProfile?.title == 'Ms' ? true : null">Ms</option>
-        <option value="Mrs" [selected]="userProfile?.title == 'Mrs' ? true : null">Mrs</option>
+        <option *ngFor="let title of userFormProfileValues.title" 
+        [selected]="userProfile?.title == title ? true : null"
+        [value]="title">{{ title }}</option>
       </select>
       <div *ngIf="(!userForm.controls['title'].valid && userForm.controls['title'].touched)" class="w3-yellow w3-padding-small">Enter valid title</div>
       
@@ -35,43 +35,25 @@
 
       <label>Gender</label>
       <select class="w3-select w3-border" formControlName="gender">
-        <option value="M" [selected]="userProfile?.gender == 'M' ? true : null">M</option>
-        <option value="F" [selected]="userProfile?.gender == 'F' ? true : null">F</option>
+        <option *ngFor="let gender of userFormProfileValues.gender"
+        [selected]="userProfile?.gender == 'gender' ? true : null"
+        [value]="gender">{{ gender }}</option>
       </select>
       <div *ngIf="(!userForm.controls['gender'].valid && userForm.controls['gender'].touched)" class="w3-yellow w3-padding-small">Enter valid gender</div>
 
       <label>Role</label>
       <select class="w3-select w3-border" formControlName="role">
-        <option value="Project Manager" [selected]="userProfile?.role == 'Project Manager' ? true : null">Project Manager</option>
-        <option value="Project Team" [selected]="userProfile?.role == 'Project Team' ? true : null">Project Team</option>
-        <option value="Steering Committee" [selected]="userProfile?.role == 'Steering Committee' ? true : null">Steering Committee</option>
-        <option value="Project Client" [selected]="userProfile?.role == 'Project Client' ? true : null">Project Client</option>
-        <option value="Project Management Office (PMO)" [selected]="userProfile?.role == 'Project Management Office (PMO)' ? true : null">Project Management Office (PMO)</option>
-        <option value="Resource Manager" [selected]="userProfile?.role == 'Resource Manager' ? true : null">Resource Manager</option>
+        <option *ngFor="let role of userFormProfileValues.role"
+        [selected]="userProfile?.role == role ? true : null"
+        [value]="role">{{ role }}</option>
       </select>
       <div *ngIf="(!userForm.controls['role'].valid && userForm.controls['role'].touched)" class="w3-yellow w3-padding-small">Enter valid role</div>
 
       <label>Industry</label>
       <select class="w3-select w3-border" formControlName="industry">
-        <option value="Automotive" [selected]="userProfile?.industry == 'Automotive' ? true : null">Automotive</option>
-        <option value="Public Sector" [selected]="userProfile?.industry == 'Public Sector' ? true : null">Public Sector</option>
-        <option value="Aereospace" [selected]="userProfile?.industry == 'Aereospace' ? true : null">Aereospace</option>
-        <option value="Insurance" [selected]="userProfile?.industry == 'Insurance' ? true : null">Insurance</option>
-        <option value="Media" [selected]="userProfile?.industry == 'Media' ? true : null">Media</option>
-        <option value="Banking" [selected]="userProfile?.industry == 'Banking' ? true : null">Banking</option>
-        <option value="Distribution" [selected]="userProfile?.industry == 'Distribution' ? true : null">Distribution</option>
-        <option value="Consumer Products" [selected]="userProfile?.industry == 'Consumer Products' ? true : null">Consumer Products</option>
-        <option value="Energy and Utilities" [selected]="userProfile?.industry == 'Energy and Utilities' ? true : null">Energy and Utilities</option>
-        <option value="Industrial Products" [selected]="userProfile?.industry == 'Industrial Products' ? true : null">Industrial Products</option>
-        <option value="Healtcare" [selected]="userProfile?.industry == 'Healtcare' ? true : null">Healtcare</option>
-        <option value="Insurance" [selected]="userProfile?.industry == 'Insurance' ? true : null">Insurance</option>
-        <option value="Utilities" [selected]="userProfile?.industry == 'Utilities' ? true : null">Utilities</option>
-        <option value="Manufacturing" [selected]="userProfile?.industry == 'Manufacturing' ? true : null">Manufacturing</option>
-        <option value="High Tech" [selected]="userProfile?.industry == 'High Tech' ? true : null">High Tech</option>
-        <option value="Natural Resources" [selected]="userProfile?.industry == 'Natural Resources' ? true : null">Natural Resources</option>
-        <option value="Retail" [selected]="userProfile?.industry == 'Retail' ? true : null">Retail</option>
-        <option value="Telecoms" [selected]="userProfile?.industry == 'Telecoms' ? true : null">Telecoms</option>
-        <option value="Transportation" [selected]="userProfile?.industry == 'Transportation' ? true : null">Transportation</option>
+        <option *ngFor="let industry of userFormProfileValues.industry"
+        [selected]="userProfile?.industry == industry ? true : null"
+        [value]="industry">{{ industry }}</option>
       </select>
       <div *ngIf="(!userForm.controls['industry'].valid && userForm.controls['industry'].touched)" class="w3-yellow w3-padding-small">Enter valid industry</div>
 

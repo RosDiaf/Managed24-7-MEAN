@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, from, Observer } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { ProjectManagers } from '../../assets/mock/users'
+import { ProjectManagers } from '../../assets/mock/users';
 // -- Services
 import { DataService } from '../data.service';
 

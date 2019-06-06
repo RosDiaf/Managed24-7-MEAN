@@ -1,0 +1,26 @@
+export const userFormProfileValues = {
+    title: ['Mr', 'Ms', 'Mrs'],
+    gender: ['M', 'F'],
+    role: ['Project Manager', 'Project Team', 'Steering Committee', 'Project Client',
+    'Project Management Office (PMO)', 'Resource Manager'],
+    industry: [
+    'Automotive',
+    'Public Sector',
+    'Aereospace',
+    'Insurance',
+    'Media',
+    'Banking',
+    'Distribution',
+    'Consumer Products',
+    'Energy and Utilities',
+    'Industrial Products',
+    'Healtcare',
+    'Insurance',
+    'Utilities',
+    'Manufacturing',
+    'High Tech',
+    'Natural Resources',
+    'Retail',
+    'Telecoms',
+    'Transportation']
+};

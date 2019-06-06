@@ -19,7 +19,8 @@ export class DialogComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "editUserId" changed
-    if (changes['editUserId']) {
+    let editUserId = 'editUserId';
+    if (changes[editUserId]) {
       this.getSingleUser();
     }
   }
@@ -28,7 +29,7 @@ export class DialogComponent implements OnInit, OnChanges {
     this.dataService.getUsersById(this.editUserId)
     .subscribe(res => {
       this.userProfile = res;
-    })
+    });
   }
 
   closeDialog() {

@@ -20,6 +20,7 @@ import { TeamComponent } from './team/team.component';
 import { ContainerComponent } from './container/container.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { SanitizerService } from './shared/sanitizer';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { DialogComponent } from './dialog/dialog.component';
       preloadingStrategy: PreloadAllModules
     }),
   ],
-  providers: [DataService],
+  providers: [DataService, SanitizerService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

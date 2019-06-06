@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SanitizerService } from '../shared/sanitizer';
+import { userFormProfileValues } from '../shared/user.form.values';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,11 +11,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit, OnChanges {
 
+  userFormProfileValues: object = userFormProfileValues;
   userForm: FormGroup;
   isSubmitted: boolean;
   @Input() userProfile: any;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private dataService: DataService,
+    private sanitizerService: SanitizerService) {
     this.buildUserForm();
   }
 
@@ -22,14 +28,16 @@ export class ProfileComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['userProfile']) {
+    const userProfile = 'userProfile';
+    if (changes[userProfile]) {
       this.isSubmitted = false;
-      this.userForm.controls['title'].setValue(this.userProfile.title)
-      this.userForm.controls['name'].setValue(this.userProfile.name);
-      this.userForm.controls['surname'].setValue(this.userProfile.surname);
-      this.userForm.controls['gender'].setValue(this.userProfile.gender);
-      this.userForm.controls['role'].setValue(this.userProfile.role);
-      this.userForm.controls['industry'].setValue(this.userProfile.industry);
+      const keyArr = ['title', 'name', 'surname', 'gender', 'role', 'industry'];
+      this.userForm.controls[keyArr[0]].setValue(this.userProfile.title);
+      this.userForm.controls[keyArr[1]].setValue(this.userProfile.name);
+      this.userForm.controls[keyArr[2]].setValue(this.userProfile.surname);
+      this.userForm.controls[keyArr[3]].setValue(this.userProfile.gender);
+      this.userForm.controls[keyArr[4]].setValue(this.userProfile.role);
+      this.userForm.controls[keyArr[5]].setValue(this.userProfile.industry);
     }
   }
 
@@ -46,6 +54,7 @@ export class ProfileComponent implements OnInit, OnChanges {
 
   onSubmit() {
     if (this.userForm.valid) {
+      this.sanitizeInputForm(this.userForm);
       const user = {
         title: this.userForm.controls.title.value,
         name: this.userForm.controls.name.value,
@@ -71,6 +80,16 @@ export class ProfileComponent implements OnInit, OnChanges {
     } else {
       this.isSubmitted = false;
     }
+  }
+
+  sanitizeInputForm(form) {
+    const value = form.value;
+    value.title = this.sanitizerService.sanitizeInput(value.title);
+    value.name = this.sanitizerService.sanitizeInput(value.name);
+    value.surname = this.sanitizerService.sanitizeInput(value.surname);
+    value.gender = this.sanitizerService.sanitizeInput(value.gender);
+    value.role = this.sanitizerService.sanitizeInput(value.role);
+    value.industry = this.sanitizerService.sanitizeInput(value.industry);
   }
 
   reset() {

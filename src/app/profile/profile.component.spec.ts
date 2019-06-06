@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile.component';
 import { Observable, of, from, Observer } from 'rxjs';
+import { SanitizerService } from '../shared/sanitizer';
 
 // -- Services
 import { DataService } from '../data.service';
@@ -15,7 +16,7 @@ describe('ProfileComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ProfileComponent ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
-      providers: [DataService]
+      providers: [DataService, SanitizerService]
     })
     .compileComponents();
   }));
@@ -61,8 +62,8 @@ describe('ProfileComponent', () => {
     });
 
     it('should call DataService when component initialized', () => {
-      let service = fixture.debugElement.injector.get(DataService);
-      spyOn(service, 'setUsers').and.returnValue({message: "Product saved successfully!"});
+      const service = fixture.debugElement.injector.get(DataService);
+      spyOn(service, 'setUsers').and.returnValue({message: 'Product saved successfully!'});
       fixture.detectChanges();
       expect(component.isSubmitted).toEqual(undefined);
     });
