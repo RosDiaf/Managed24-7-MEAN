@@ -23,7 +23,13 @@ export class ProfileComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
     if (changes['userProfile']) {
-      console.log("EDIT: ", this.userProfile)
+      this.isSubmitted = false;
+      this.userForm.controls['title'].setValue(this.userProfile.title)
+      this.userForm.controls['name'].setValue(this.userProfile.name);
+      this.userForm.controls['surname'].setValue(this.userProfile.surname);
+      this.userForm.controls['gender'].setValue(this.userProfile.gender);
+      this.userForm.controls['role'].setValue(this.userProfile.role);
+      this.userForm.controls['industry'].setValue(this.userProfile.industry);
     }
   }
 
@@ -59,10 +65,16 @@ export class ProfileComponent implements OnInit, OnChanges {
             console.log(err.name);
             console.log(err.message);
             console.log(err.status);
+            // this.isSubmitted = !this.isSubmitted;
         }
       );
     } else {
       this.isSubmitted = false;
     }
+  }
+
+  reset() {
+    this.userForm.reset();
+    this.isSubmitted = !this.isSubmitted;
   }
 }
